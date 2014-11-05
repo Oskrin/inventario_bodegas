@@ -6,8 +6,8 @@ if (empty($_SESSION['id'])) {
 
 function menu_1() {
     print(' <ul id="main-menu" class="sm sm-blue">
-            <li><a href="" target="_parent">Inicio</a></li>
-            <li><a href="" target="_parent">Ingresos</a>
+            <li><a href="..html/principal.php" target="_parent"><i class="icon-home"></i> Inicio</a></li>
+            <li><a href="" target="_parent"> <i class="icon-th-large"></i> Ingresos</a>
                 <ul>
                     <li><a href="../html/bodegas.php" target="_blank">Bodegas</a></li>
                     <li><a href="../html/usuarios.php" target="_blank">Usuarios</a></li>
@@ -33,7 +33,7 @@ function menu_1() {
                 </ul>
             </li>
             
-            <li><a href="" target="_parent">Procesos</a>
+            <li><a href="" target="_parent"><i class="icon-book"></i> Procesos</a>
                 <ul>
                     <li><a href="../html/asignacion_bodegas.php" target="_blank">Movimientos Productos</a></li>
                     <li><a href="../html/inventario.php" target="_blank">Inventario</a></li>
@@ -72,7 +72,7 @@ function menu_1() {
                     <li><a href="../html/gastos.php" target="_blank">Gastos Internos</a></li>
                 </ul>
             </li>
-            <li><a href="" target="_parent">Reportes</a>
+            <li><a href="" target="_parent"><i class="icon-print"></i> Reportes</a>
                 <ul>
                     <li><a href="#">Productos</a>
                         <ul>
@@ -82,7 +82,7 @@ function menu_1() {
                         </ul>
                    </li>
                    
-                   <li><a href="" target="_parent">Compras</a>
+                   <li><a href="" target="_parent"><i class="icon-shopping-cart"></i> Compras</a>
                         <ul>
                             
                             <li><a href="">Resumen de compras locales</a>

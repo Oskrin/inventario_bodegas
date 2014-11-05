@@ -49,7 +49,7 @@ include '../menus/menu.php';
                         <span class="icon-bar"></span>
                     </a>
 
-                    <a class="brand" href="">
+                    <a class="brand" href="">                    
                         <h1><?php echo $_SESSION['empresa']; ?></h1>				
                     </a>
                 </div>
