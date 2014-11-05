@@ -12,7 +12,17 @@
 
 /* Menu box
 ===================*/
-
+	.inicio{
+		background: #2E2D32;
+		color: #2586B2!important;
+		width: 100px!important;
+		text-align: center;
+	}
+	.inicio:hover{
+		background: rgba(25,25,25,0.3);
+		color: #FFF!important;
+		
+	}
 	.sm-blue {
 		background:#3193c0; /* Old browsers */
 		background-image:url(css-gradients-fallback/main-menu-bg.png);
