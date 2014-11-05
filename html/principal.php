@@ -48,7 +48,7 @@ include '../menus/menu.php';
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </a>
-
+                    
                     <a class="brand" href="">
                         <h1><?php echo $_SESSION['empresa']; ?></h1>				
                     </a>
@@ -87,7 +87,7 @@ include '../menus/menu.php';
                                         <div class="tabbable" id="centro">
                                             <fieldset>
                                                 <div align="center">
-                                                    <img src="../images/logo_empresa.jpg" width="30%" height="20%" /> 
+                                                    <img src="../images/logo_empresa.jpg" width="80%" /> 
                                                 </div>
                                             </fieldset>   
                                         </div>

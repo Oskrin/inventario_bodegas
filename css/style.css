@@ -73,10 +73,13 @@ textarea {
 .navbar .container {
     position: relative;
 }
-
+.brand{
+    background: rgba(25,25,25,0.7);
+    border-radius: 3px;
+}
 .navbar-inner {
     padding: 7px 0;
-    background: #3ABE19 !important;
+    background: url(../img/banner.fw.png)!important;
     -moz-border-radius: 0;
     -webkit-border-radius: 0;
     border-radius: 0;
