@@ -1,0 +1,137 @@
+<?php
+include 'base.php';
+conectarse();
+session_start();
+$cont=0;
+$cont1=0;
+$contvect=0;
+$pos1=0;
+$pos2=0;
+$data=0;
+$vector0;
+$vector1;
+$vector2;
+$vector3;
+$vector5;
+$consulta = pg_query("select * from trabajo_tecnico order by id_trabajotecnico asc");
+while ($row = pg_fetch_row($consulta)) {
+	$cont=$row[0];
+}
+$cont=$cont+1;
+$consulta = pg_query("select * from detalles_trabajo order by id_detalle asc");
+while ($row = pg_fetch_row($consulta)) {
+	$cont1=$row[0];
+}
+$cont1=$cont1+1;
+$campo1=$_POST['vector1'].",";
+$campo2=$_POST['vector2'].",";
+$campo0=$_POST['vector0'].",";
+$campo3=$_POST['vector3'].",";
+$campo5=$_POST['vector5'].",";
+if($campo1[0]!=","){		
+	$campo1=','.$campo1;		
+}
+if($campo2[0]!=","){
+	$campo2=",".$campo2;
+}
+if($campo3[0]!=","){
+	$campo3=",".$campo3;
+}
+if($campo5[0]!=","){
+	$campo5=",".$campo5;
+}
+if($campo0[0]!=","){
+	$campo0=",".$campo0;
+}
+$contcomas=0;
+for($i=1;$i<strlen($campo1);$i++){		
+	if($campo1{$i}==","){
+		$pos2=$i;
+		$contcomas=1;
+	}
+	if($contcomas==1){			
+		$vector1[$contvect]=substr($campo1,($pos1+1),($pos2-($pos1+1)));			
+		$contvect++;			
+		$contcomas=0;
+		$pos1=$pos2;
+		$pos2=0;
+	}	
+}
+$contcomas=0;
+$contvect=0;
+$pos2=0;
+$pos1=0;
+for($i=1;$i<strlen($campo2);$i++){		
+	if($campo2{$i}==","){
+		$pos2=$i;
+		$contcomas=1;
+	}
+	if($contcomas==1){			
+		$vector2[$contvect]=substr($campo2,($pos1+1),($pos2-($pos1+1)));
+		$contvect++;			
+		$contcomas=0;
+		$pos1=$pos2;
+		$pos2=0;
+	}
+}
+$contcomas=0;
+$contvect=0;
+$pos2=0;
+$pos1=0;
+for($i=1;$i<strlen($campo3);$i++){		
+	if($campo3{$i}==","){
+		$pos2=$i;
+		$contcomas=1;
+	}
+	if($contcomas==1){			
+		$vector3[$contvect]=substr($campo3,($pos1+1),($pos2-($pos1+1)));
+		$contvect++;			
+		$contcomas=0;
+		$pos1=$pos2;
+		$pos2=0;
+	}
+}
+$contcomas=0;
+$contvect=0;
+$pos2=0;
+$pos1=0;
+for($i=1;$i<strlen($campo5);$i++){		
+	if($campo5{$i}==","){
+		$pos2=$i;
+		$contcomas=1;
+	}
+	if($contcomas==1){			
+		$vector5[$contvect]=substr($campo5,($pos1+1),($pos2-($pos1+1)));
+		$contvect++;			
+		$contcomas=0;
+		$pos1=$pos2;
+		$pos2=0;
+	}
+}
+$contcomas=0;
+$contvect=0;
+$pos2=0;
+$pos1=0;
+for($i=1;$i<strlen($campo0);$i++){		
+	if($campo0{$i}==","){
+		$pos2=$i;
+		$contcomas=1;
+	}
+	if($contcomas==1){			
+		$vector0[$contvect]=substr($campo0,($pos1+1),($pos2-($pos1+1)));
+		$contvect++;			
+		$contcomas=0;
+		$pos1=$pos2;
+		$pos2=0;
+	}
+}
+$tamaño = sizeof($vector1);
+pg_query("insert into trabajo_tecnico values ('$cont','$_SESSION[id]','$_POST[id_registro]','$_POST[total_reparaciones]','$_POST[recomendacion]')");
+for($i=0;$i<$tamaño;$i++){		
+	pg_query("insert into detalles_trabajo values('$cont1','$vector2[$i]','$vector3[$i]','$cont','$vector0[$i]','$vector1[$i]','$vector5[$i]')");
+	$cont1++;
+	$data=1;
+}
+pg_query("update registro_equipo set estado='1' where id_registro='$_POST[id_registro]'");
+echo $data;
+?>
