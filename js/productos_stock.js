@@ -44,38 +44,56 @@ function guardar_asignacion() {
         alertify.alert("Seleccione una bodega");
     }else{
         if (tam.length > 0) {
-
             var v1 = new Array();
             var v2 = new Array();
             var string_v1 = "";
             var string_v2 = "";
             var fil = jQuery("#list2").jqGrid("getRowData");
+            $("#list2").trigger("reloadGrid");
+            var can = 0;
 
             for (var i = 0; i < fil.length; i++) {
                 var datos = fil[i];
                 v1[i] = datos['cod_productos'];
                 v2[i] = datos['cantidad'];
-            }
-
-            for (i = 0; i < fil.length; i++) {
-                string_v1 = string_v1 + "|" + v1[i];
-                string_v2 = string_v2 + "|" + v2[i];
-            }
-            $.ajax({
-                type: "POST",
-                url: "../procesos/guardar_asignacion.php",
-                data: "campo1=" + string_v1 + "&campo2=" + string_v2 + "&fecha_actual=" + $("#fecha_actual").val()+ "&hora_actual=" + $("#hora_actual").val()+ "&id_bodega=" + $("#id_bodega").val(),
-                success: function(data) {
-                    var val = data;
-                    if (val == 1) {
-                        alertify.alert("Asignación guardada correctamente", function(){location.reload();});
-                    }
+                if(v2[i] == ""){
+                    can = 1;
                 }
-            });
+            }
+            
+            if(can==1){
+             alertify.alert("Ingrese cantidad de los productos");   
+            }else{
+                for (i = 0; i < fil.length; i++) {
+                 string_v1 = string_v1 + "|" + v1[i];
+                 string_v2 = string_v2 + "|" + v2[i];
+                 }
+                 alert(string_v2);
+            }
+            
+//            $.ajax({
+//                type: "POST",
+//                url: "../procesos/guardar_asignacion.php",
+//                data: "campo1=" + string_v1 + "&campo2=" + string_v2 + "&fecha_actual=" + $("#fecha_actual").val()+ "&hora_actual=" + $("#hora_actual").val()+ "&id_bodega=" + $("#id_bodega").val(),
+//                success: function(data) {
+//                    var val = data;
+//                    if (val == 1) {
+//                        alertify.alert("Asignación guardada correctamente", function(){location.reload();});
+//                    }
+//                }
+//            });
         } else {
             alertify.alert("Error... Ingrese productos a las bodegas");
         }
     }
+}
+
+function numeros(e) { 
+tecla = (document.all) ? e.keyCode : e.which;
+if (tecla==8) return true;
+patron = /\d/;
+te = String.fromCharCode(tecla);
+return patron.test(te);
 }
 
 function inicio() {
@@ -152,10 +170,9 @@ function inicio() {
         if(ret.stock <= 0){
            alertify.alert("Error... Fuera de stock");  
         }else{
-        
         var filas = jQuery("#list2").jqGrid("getRowData");
         if (filas.length === 0) {
-          jQuery("#list2").jqGrid('addRowData',rowid,{cod_productos: ret.cod_productos, codigo2: ret.codigo, articulo2: ret.articulo});  
+          jQuery("#list2").jqGrid('addRowData',rowid,{cod_productos: ret.cod_productos, codigo2: ret.codigo, articulo2: ret.articulo, disponibles: ret.stock});  
         }else{
             var repe = 0;
             for (var i = 0; i < filas.length; i++) {
@@ -167,7 +184,7 @@ function inicio() {
             if (repe === 1) {
                 alertify.alert("Error... Producto cargado a bodega");
             }else{
-              jQuery("#list2").jqGrid('addRowData',rowid,{cod_productos: ret.cod_productos, codigo2: ret.codigo, articulo2: ret.articulo});    
+              jQuery("#list2").jqGrid('addRowData',rowid,{cod_productos: ret.cod_productos, codigo2: ret.codigo, articulo2: ret.articulo, disponibles: ret.stock});    
             }
           }
        }
@@ -213,14 +230,15 @@ function inicio() {
     
     jQuery("#list2").jqGrid({
 	datatype: "local",
-   	colNames:['','Cod','Codigo','Productos', 'Cantidad'],
+   	colNames:['','Cod','Codigo','Productos', 'Cantidad','Disponibles'],
    	colModel:[
                 {name: 'myac', width: 50, fixed: true, sortable: false, resize: false, formatter: 'actions',
                 formatoptions: {keys: false, delbutton: true, editbutton: false}},
                 {name:'cod_productos',index:'cod_productos', width:50, hidden: true},
                 {name:'codigo2',index:'codigo2', width:250},
    		{name:'articulo2',index:'articulo2', width:300},
-   		{name:'cantidad', index: 'cantadad', editable: true, search: false, hidden: false, editrules: {edithidden: false}, align: 'center',frozen: true, width: 100},
+   		{name:'cantidad',index:'cantidad', width:100, resizable:true,sortable:true,editable:true, align: 'center', editoptions:{ size:15,dataInit: function(elem){$(elem).bind("keypress", function(e) {return numeros(e)})}}}, 
+                {name:'disponibles', index: 'disponibles', editable: true, search: false, hidden: false, editrules: {edithidden: false}, align: 'center',frozen: true, width: 100},
    	],
    	rowNum:5,
    	rowList:[5,10,20],
@@ -232,6 +250,7 @@ function inicio() {
         cellsubmit: 'clientArray',
         shrinkToFit: true,
 	caption:"Productos Asignados",
+        reloadAfterEdit: true,
         delOptions: {
             modal: true,
             jqModal: true,
@@ -247,8 +266,14 @@ function inicio() {
         },
         afterSaveCell : function(rowid,name,val,iRow,iCol) {
             if(name == 'cantidad') {
-                jQuery("#list2").jqGrid('setRowData',rowid);
-                
+                var dispo = jQuery("#list2").jqGrid('getCell',rowid,iCol+1);
+                if(parseInt(val)>parseInt(dispo)){
+                  alertify.alert("Error... Fuera de stock", function(){
+                   jQuery("#list2").jqGrid('setRowData',rowid,{cantidad: "" });    
+                  });
+                }else{
+                    $("#list2").trigger("reloadGrid");
+                }
             }
         }
 }).navGrid('#pager2',{

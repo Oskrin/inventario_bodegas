@@ -82,7 +82,7 @@ include '../menus/menu.php';
                         <div class="span12">      		
                             <div class="widget ">
                                 <div class="widget-header">
-                                    <i class="icon-user"></i>
+                                    <i class="icon-list-alt"></i>
                                     <h3>BODEGAS</h3>
                                 </div> <!-- /widget-header -->
 

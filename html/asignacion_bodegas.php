@@ -100,7 +100,7 @@ $cont1++;
                         <div class="span12">      		
                             <div class="widget ">
                                 <div class="widget-header">
-                                    <i class="icon-user"></i>
+                                    <i class="icon-file"></i>
                                     <h3>ASIGNACIÓN PRODUCTOS</h3>
                                 </div> <!-- /widget-header -->
 

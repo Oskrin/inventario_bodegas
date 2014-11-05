@@ -101,7 +101,7 @@ $cont1++;
                         <div class="span12">      		
                             <div class="widget ">
                                 <div class="widget-header">
-                                    <i class="icon-user"></i>
+                                    <i class="icon-th-list"></i>
                                     <h3>INVENTARIO GENERAL</h3>
                                 </div> <!-- /widget-header -->
 

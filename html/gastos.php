@@ -103,7 +103,7 @@ $cont1++;
                         <div class="span12">      		
                             <div class="widget ">
                                 <div class="widget-header">
-                                    <i class="icon-list-alt"></i>
+                                    <i class="icon-dollar"></i>
                                     <h3>GASTOS INTERNOS</h3>
                                 </div> <!-- /widget-header -->
 
@@ -154,7 +154,7 @@ $cont1++;
                                                     <fieldset>
                                                         <br />
                                                         <div class="widget widget-nopad">
-                                                            <div class="widget-header"> <i class="icon-list-alt"></i>
+                                                            <div class="widget-header"> <i class="icon-money"></i>
                                                                 <h3>REGISTRO GASTOS</h3>
                                                             </div>
                                                             <!-- /widget-header -->

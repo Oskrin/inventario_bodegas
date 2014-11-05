@@ -103,7 +103,7 @@ $cont1++;
                         <div class="span12">      		
                             <div class="widget ">
                                 <div class="widget-header">
-                                    <i class="icon-list-alt"></i>
+                                    <i class="icon-dollar"></i>
                                     <h3>GASTOS</h3>
                                 </div> <!-- /widget-header -->
 

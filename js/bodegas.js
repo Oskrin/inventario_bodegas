@@ -1,4 +1,4 @@
-﻿$(document).on("ready", inicio);
+$(document).on("ready", inicio);
 
 $(function() {
     $('#main-menu').smartmenus({
