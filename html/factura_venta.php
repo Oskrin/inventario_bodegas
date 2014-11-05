@@ -216,7 +216,7 @@ $cont1++;
                                                                 <td><label>Cantidad:</label></td>   
                                                                 <td><label style="width: 100%">P. Venta:</label></td>
                                                                 <td><label>Descuento:</label></td>
-                                                                <!--<td><label>Disponibles:</label></td>-->
+                                                                <td><label>Disponibles:</label></td>
                                                             </tr>
 
                                                             <tr>
