@@ -48,57 +48,58 @@ include '../menus/menu.php';
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </a>
-                    
+
                     <a class="brand" href="">
                         <h1><?php echo $_SESSION['empresa']; ?></h1>				
                     </a>
                 </div>
             </div>
+        </div>
 
-            <!-- /Inicio  Menu Principal -->
-            <div class="subnavbar">
-                <?Php
-                // Cabecera Menu 
-                if ($_SESSION['cargo'] == '1') {
-                    print menu_1();
-                }
-                if ($_SESSION['cargo'] == '2') {
-                    print menu_2();
-                }
-                if ($_SESSION['cargo'] == '3') {
-                    print menu_3();
-                }
-                ?>  
-            </div>
-            <!-- /Fin  Menu Principal -->
+        <!-- /Inicio  Menu Principal -->
+        <div class="subnavbar">
+            <?Php
+            // Cabecera Menu 
+            if ($_SESSION['cargo'] == '1') {
+                print menu_1();
+            }
+            if ($_SESSION['cargo'] == '2') {
+                print menu_2();
+            }
+            if ($_SESSION['cargo'] == '3') {
+                print menu_3();
+            }
+            ?>  
+        </div>
+        <!-- /Fin  Menu Principal -->
 
-            <div class="main">
-                <div class="main-inner">
-                    <div class="container">
-                        <div class="row">
-                            <div class="span12">      		
-                                <div class="widget ">
-                                    <div class="widget-header">
-                                        <i class="icon-th-large"></i>
-                                        <h3>Responsable:  <?php echo $_SESSION['nombres'] ?></h3>
-                                    </div> <!-- /widget-header -->
+        <div class="main">
+            <div class="main-inner">
+                <div class="container">
+                    <div class="row">
+                        <div class="span12">      		
+                            <div class="widget ">
+                                <div class="widget-header">
+                                    <i class="icon-th-large"></i>
+                                    <h3>Responsable:  <?php echo $_SESSION['nombres'] ?></h3>
+                                </div> <!-- /widget-header -->
 
-                                    <div class="widget-content">
-                                        <div class="tabbable" id="centro">
-                                            <fieldset>
-                                                <div align="center">
-                                                    <img src="../images/logo_empresa.jpg" width="80%" /> 
-                                                </div>
-                                            </fieldset>   
-                                        </div>
-                                    </div> 
-                                </div>
-                            </div> 
+                                <div class="widget-content">
+                                    <div class="tabbable" id="centro">
+                                        <fieldset>
+                                            <div align="center">
+                                                <img src="../images/logo_empresa.jpg" width="80%" /> 
+                                            </div>
+                                        </fieldset>   
+                                    </div>
+                                </div> 
+                            </div>
                         </div> 
                     </div> 
                 </div> 
             </div> 
-        </div>
+        </div> 
+
         <script type="text/javascript" src="../js/base.js"></script>
 
         <div class="footer">
