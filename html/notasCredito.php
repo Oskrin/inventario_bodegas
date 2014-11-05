@@ -56,13 +56,14 @@ $cont1++;
         <script type="text/javascript" src="../js/jquery.ui.totop.js" ></script>
         <script type="text/javascript" src="../js/jquery.smartmenus.js"></script>
         <script type="text/javascript" src="../js/alertify.min.js"></script>
-        
+
     </head>
 
     <body>
         <div class="navbar navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container">
+
                     <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -70,11 +71,11 @@ $cont1++;
                     </a>
 
                     <a class="brand" href="">
-                        <?php echo $_SESSION['empresa']; ?>         
-                    </a>			
-                </div> 
-            </div> 
-        </div> 
+                        <h1><?php echo $_SESSION['empresa']; ?></h1>				
+                    </a>
+                </div>
+            </div>
+        </div>
 
         <!-- /Inicio  Menu Principal -->
         <div class="subnavbar">

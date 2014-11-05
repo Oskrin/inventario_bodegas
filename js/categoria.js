@@ -64,7 +64,6 @@ function inicio() {
         closeOnEscape: true
     });
     jQuery("#list").setGridWidth($('#centro').width() - 10);
-
 }
 function Defecto(e) {
     e.preventDefault();

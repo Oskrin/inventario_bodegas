@@ -25,7 +25,7 @@ function inicio() {
         rowNum: 10,
         rowList: [10, 20, 30],
         width: null,
-        height: 400,
+        height: 255,
         pager: jQuery('#pager'),
         editurl: "../procesos/procesosBodegas.php",
         sortname: 'id_bodega',
@@ -67,8 +67,7 @@ function inicio() {
     {
         closeOnEscape: true
     });
-    jQuery("#list").jqGrid('setFrozenColumns');
-    jQuery("#list").setGridWidth($('#centro').width() - 10);
+     jQuery("#list").setGridWidth($('#centro').width() - 10);
 }
 
 function Defecto(e) {

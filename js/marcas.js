@@ -17,7 +17,7 @@ function inicio() {
         colNames: ['Cod. Marca', 'Nombre Marca'],
         colModel: [
             {name: 'id_marca', index: 'id_marca', editable: true, align: 'center', width: '120', search: false, frozen: true, editoptions: {readonly: 'readonly'}, formoptions: {elmprefix: ""}},
-            {name: 'nombre_marca', index: 'nombre_marca', editable: true, align: 'center', width: '800', search: true, frozen: true, formoptions: {elmsuffix: " (*)"}, editrules: {required: true}}
+            {name: 'nombre_marca', index: 'nombre_marca', editable: true, align: 'center', width: '690', search: true, frozen: true, formoptions: {elmsuffix: " (*)"}, editrules: {required: true}}
         ],
         rowNum: 10,
         rowList: [10, 20, 30],
@@ -29,7 +29,7 @@ function inicio() {
         sortordezr: 'asc',
         caption: 'Lista Marcas',
         viewrecords: true
-    }).jqGrid('navGrid', '#pager',
+     }).jqGrid('navGrid', '#pager',
             {
                 add: true,
                 edit: true,

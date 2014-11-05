@@ -9,7 +9,7 @@ $(function() {
 
 function inicio() {
     $(window).bind('resize', function() {
-    jQuery("#list").setGridWidth($('#centro').width() - 10);
+        jQuery("#list").setGridWidth($('#centro').width() - 10);
     }).trigger('resize');
     jQuery("#list").jqGrid({
         url: '../xml/xmlUsuario.php',
@@ -74,7 +74,6 @@ function inicio() {
     {
         closeOnEscape: true
     });
-    jQuery("#list").jqGrid('setFrozenColumns');
     jQuery("#list").setGridWidth($('#centro').width() - 10);
 }
 

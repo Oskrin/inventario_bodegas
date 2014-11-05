@@ -437,7 +437,7 @@ jQuery("#list").jqGrid({
         viewrecords: true,
         cellEdit: true,
         cellsubmit: 'clientArray',
-        shrinkToFit: true,
+        shrinkToFit: false,
         delOptions: {
             modal: true,
             jqModal: true,
@@ -494,6 +494,7 @@ jQuery("#list").jqGrid({
     {
         closeOnEscape: true
     });
+    
     jQuery(window).bind('resize', function () {
         jQuery("#list").setGridWidth(jQuery('#grid_container').width() - 20, true);
     }).trigger('resize');
