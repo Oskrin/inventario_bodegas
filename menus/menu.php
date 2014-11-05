@@ -6,7 +6,7 @@ if (empty($_SESSION['id'])) {
 
 function menu_1() {
     print(' <ul id="main-menu" class="sm sm-blue">
-            <li><a href="..html/principal.php" target="_parent"><i class="icon-home"></i> Inicio</a></li>
+            <li><a href="../html/principal.php" target="_parent"><i class="icon-home"></i> Inicio</a></li>
             <li><a href="" target="_parent"> <i class="icon-th-large"></i> Ingresos</a>
                 <ul>
                     <li><a href="../html/bodegas.php" target="_blank">Bodegas</a></li>
@@ -169,7 +169,7 @@ function menu_1() {
                 </ul>
             </li>
            
-            <li><a href="" target="_parent">Bienvenido</a>
+            <li><a href="" target="_parent"><i class="icon-tower"></i> Bienvenido</a>
                 <ul>
                     <li><a href="" class="disabled">' . $_SESSION['nombres'] . '</a></li>
                     <li><a href="../html/index.php">Salir</a></li>
