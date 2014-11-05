@@ -231,8 +231,7 @@ function entrar3() {
                             var precio = 0;
                             var multi = 0;
                             if (filas.length === 0) {
-                                if ($("#descuento").val() !== "")
-                                {
+                                if ($("#descuento").val() !== "") {
                                     desc = $("#descuento").val();
                                     precio = (parseFloat($("#p_venta").val())).toFixed(2);
                                     multi = ($("#cantidad").val() * precio).toFixed(2);
@@ -514,13 +513,9 @@ function abrirDialogo() {
                         },
 
                         _removeIfInvalid: function( event, ui ) {
-                   
-                            // Selected an item, nothing to do
                             if ( ui.item ) {
                                 return;
                             }
-                   
-                            // Search for a match (case-insensitive)
                             var value = this.input.val(),
                             valueLowerCase = value.toLowerCase(),
                             valid = false;
@@ -530,13 +525,9 @@ function abrirDialogo() {
                                     return false;
                                 }
                             });
-                   
-                            // Found a match, nothing to do
                             if ( valid ) {
                                 return;
                             }
-                   
-                            // Remove invalid value
                             this.input
                             .val( "" )
                             .attr( "title", value + " La serie no existe" )
@@ -2563,9 +2554,9 @@ function inicio() {
         var id = jQuery("#list2").jqGrid('getGridParam', 'selrow');
         jQuery('#list2').jqGrid('restoreRow', id);
         if (id) {
-           var ret = jQuery("#list2").jqGrid('getRowData', id);
-           var valor = ret.id_factura_venta;
-         /////////////agregregar datos factura////////
+        var ret = jQuery("#list2").jqGrid('getRowData', id);
+        var valor = ret.id_factura_venta;
+        /////////////agregregar datos factura////////
         $("#comprobante").val(valor);
         $("#btnGuardar").attr("disabled", true);
         $("#btnModificar").attr("disabled", true);
