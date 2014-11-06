@@ -7,7 +7,7 @@ session_start();
     </head> 
     <body>
         <header>
-            <img src="../../images/logo_empresa.jpg" />
+            <img src="../../images/icono.jpg" />
             <div id="me">
                 <h2 style="text-align:center;border:solid 0px;width:100%;">'.$_SESSION['empresa'].'</h2>
                 <h4 style="text-align:center;border:solid 0px;width:100%;">'.$_SESSION['slogan'].'</h4>
@@ -31,23 +31,23 @@ session_start();
     $cheque=0;
     $gastos=0;
     $cxc=0;
-    $sql=pg_query("SELECT sum(total_venta::float) FROM factura_venta where fecha_actual between '$_GET[inicio]' and '$_GET[fin]' and forma_pago='Contado'");
+    $sql=pg_query("SELECT sum(total_venta::float) FROM factura_venta where fecha_actual between '$_GET[inicio]' and '$_GET[fin]' and forma_pago='Contado' and id_usuario='$_SESSION[id]'");
     while($row=pg_fetch_row($sql)){
         $contado=$row[0];
     }
-    $sql=pg_query("SELECT sum(total_venta::float) FROM factura_venta where fecha_actual between '$_GET[inicio]' and '$_GET[fin]' and forma_pago='Credito'");
+    $sql=pg_query("SELECT sum(total_venta::float) FROM factura_venta where fecha_actual between '$_GET[inicio]' and '$_GET[fin]' and forma_pago='Credito' and id_usuario='$_SESSION[id]'");
     while($row=pg_fetch_row($sql)){
         $credito=$row[0];
     }
-    $sql=pg_query("SELECT sum(total_venta::float) FROM factura_venta where fecha_actual between '$_GET[inicio]' and '$_GET[fin]' and forma_pago='Cheque'");
+    $sql=pg_query("SELECT sum(total_venta::float) FROM factura_venta where fecha_actual between '$_GET[inicio]' and '$_GET[fin]' and forma_pago='Cheque' and id_usuario='$_SESSION[id]'");
     while($row=pg_fetch_row($sql)){
         $cheque=$row[0];
     }
-    $sql=pg_query("select sum(total::float) from gastos_internos where fecha_actual between '$_GET[inicio]' and '$_GET[fin]'");
+    $sql=pg_query("select sum(total::float) from gastos_internos where fecha_actual between '$_GET[inicio]' and '$_GET[fin]' and id_usuario='$_SESSION[id]'");
     while($row=pg_fetch_row($sql)){
         $gastos=$row[0];
     }
-    $sql=pg_query("select sum(valor_pagado::float) from pagos_cobrar where fecha_actual between '$_GET[inicio]' and '$_GET[fin]'");
+    $sql=pg_query("select sum(valor_pagado::float) from pagos_cobrar where fecha_actual between '$_GET[inicio]' and '$_GET[fin]' and id_usuario='$_SESSION[id]'");
     while($row=pg_fetch_row($sql)){
         $cxc=$row[0];
     }

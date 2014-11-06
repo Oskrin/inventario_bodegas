@@ -7,7 +7,7 @@ session_start();
     </head> 
     <body>
         <header>
-            <img src="../../images/logo_empresa.jpg" />
+            <img src="../../images/icono.jpg" />
             <div id="me">
                 <h2 style="text-align:center;border:solid 0px;width:100%;">'.$_SESSION['empresa'].'</h2>
                 <h4 style="text-align:center;border:solid 0px;width:100%;">'.$_SESSION['slogan'].'</h4>
@@ -37,7 +37,7 @@ session_start();
         $contador=0;   
         $num_fact=0;
         ///////////internos
-        $sql1=pg_query("select * from factura_venta where id_cliente='$row[0]' order by forma_pago asc");        
+        $sql1=pg_query("select * from factura_venta where id_cliente='$row[0]' and id_usuario='$_SESSION[id]' order by forma_pago asc");        
         if(pg_num_rows($sql1)>0){
             while($row1=pg_fetch_row($sql1)){  
                 if($repetido==0){
@@ -73,7 +73,7 @@ session_start();
                     $sub=$sub+$row1[15];
                 }
                 else{
-                    $sql2=pg_query("select comprobante,valor_pagado,fecha_factura,tipo_factura,num_factura,forma_pago,saldo_factura from pagos_cobrar where num_factura='$row1[5]';");
+                    $sql2=pg_query("select comprobante,valor_pagado,fecha_factura,tipo_factura,num_factura,forma_pago,saldo_factura from pagos_cobrar where num_factura='$row1[5]' and id_usuario='$_SESSION[id]'");
                     if(pg_num_rows($sql2)>0){
                         $codigo.='<table>';  
                         while($row2=pg_fetch_row($sql2)){

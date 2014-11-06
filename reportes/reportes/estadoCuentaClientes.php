@@ -7,7 +7,7 @@ session_start();
 	</head> 
 	<body>
 		<header>
-            <img src="../../images/logo_empresa.jpg" />
+            <img src="../../images/icono.jpg" />
             <div id="me">
                 <h2 style="text-align:center;border:solid 0px;width:100%;">'.$_SESSION['empresa'].'</h2>
                 <h4 style="text-align:center;border:solid 0px;width:100%;">'.$_SESSION['slogan'].'</h4>
@@ -29,7 +29,7 @@ session_start();
         $repetido=0;
         $consulta=pg_query("select * from clientes where id_cliente='$_GET[id]' order by id_cliente asc");
         while($row=pg_fetch_row($consulta)){
-            $consulta1=pg_query("select * from c_cobrarexternas where id_cliente='$_GET[id]' and fecha_actual between '$_GET[inicio]' and '$_GET[fin]' order by id_c_cobrarexternas asc");
+            $consulta1=pg_query("select * from c_cobrarexternas where id_cliente='$_GET[id]' and fecha_actual between '$_GET[inicio]' and '$_GET[fin]' and id_usuario='$_SESSION[id]' order by id_c_cobrarexternas asc");
             $codigo.='<h2 style="font-weight: bold;font-size:12px;padding:5;margin:0px;border:solid 1px #000;color:blue;background:beige">RUC/CI: '.$row[2].'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$row[3].'</h2>';
             while($row1=pg_fetch_row($consulta1)){
                 if($row1[10]>0){
@@ -66,7 +66,7 @@ session_start();
                     $codigo.='</table><hr>';   
                 }      
             }
-            $consulta2=pg_query("select * from factura_venta where id_cliente='$_GET[id]' and forma_pago='Credito'");
+            $consulta2=pg_query("select * from factura_venta where id_cliente='$_GET[id]' and forma_pago='Credito' and id_usuario='$_SESSION[id]'");
             while($row2=pg_fetch_row($consulta2)){
                 $total=0;
                 $codigo.='<div id="cuerpo">';                    
@@ -80,7 +80,7 @@ session_start();
                     <td style="width:70px">Saldo</td></tr>';
                     $repetido=1;   
                 $codigo.='</table>';
-                $consulta3=pg_query("select * from pagos_venta where id_factura_venta='$row2[0]'");                       
+                $consulta3=pg_query("select * from pagos_venta where id_factura_venta='$row2[0]' and id_usuario='$_SESSION[id]'");                       
                 while($row3=pg_fetch_row($consulta3)){
                     $codigo.='<table border=0>';                                                
                     $codigo.='<tr>                

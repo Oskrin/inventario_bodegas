@@ -7,7 +7,7 @@ session_start();
     </head> 
     <body>
         <header>
-            <img src="../../images/logo_empresa.jpg" />
+            <img src="../../images/icono.jpg" />
             <div id="me">
                 <h2 style="text-align:center;border:solid 0px;width:100%;">'.$_SESSION['empresa'].'</h2>
                 <h4 style="text-align:center;border:solid 0px;width:100%;">'.$_SESSION['slogan'].'</h4>
@@ -32,7 +32,7 @@ session_start();
     while($row=pg_fetch_row($consulta)){
         $repetido=0;
         $sub=0;
-        $sql1=pg_query("select * from factura_venta where estado='Activo' and id_cliente='$row[0]' order by forma_pago asc;");
+        $sql1=pg_query("select * from factura_venta where estado='Activo' and id_cliente='$row[0]' and id_usuario='$_SESSION[id]' order by forma_pago asc;");
         if(pg_num_rows($sql1)){
             while($row1=pg_fetch_row($sql1)){
                 if($row1[10]=='Contado'){
@@ -85,7 +85,7 @@ session_start();
                         $contador=1;
                         $codigo.='</table>'; 
                     }                  
-                    $sql2=pg_query("select * from factura_venta,pagos_venta where factura_venta.id_factura_venta= pagos_venta.id_factura_venta and pagos_venta.estado='Cancelado' and pagos_venta.id_cliente='$row[0]' and factura_venta.id_factura_venta='$row1[0]'");
+                    $sql2=pg_query("select * from factura_venta,pagos_venta where factura_venta.id_factura_venta= pagos_venta.id_factura_venta and pagos_venta.estado='Cancelado' and pagos_venta.id_cliente='$row[0]' and factura_venta.id_factura_venta='$row1[0]' and factura_venta.id_usuario='$_SESSION[id]'");
                     while($row2=pg_fetch_row($sql2)){
                         $codigo.='<table>'; 
                         $codigo.='<tr>                

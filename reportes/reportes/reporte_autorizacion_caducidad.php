@@ -8,7 +8,7 @@ session_start();
     </head> 
     <body>
         <header>
-            <img src="../../images/logo_empresa.jpg" />
+            <img src="../../images/icono.jpg" />
             <div id="me">
                 <h2 style="text-align:center;border:solid 0px;width:100%;">'.$_SESSION['empresa'].'</h2>
                 <h4 style="text-align:center;border:solid 0px;width:100%;">'.$_SESSION['slogan'].'</h4>
@@ -33,7 +33,7 @@ session_start();
     while($row=pg_fetch_row($consulta)){
         $repetido=0;
         $total=0;
-        $sql1=pg_query("select id_factura_venta,num_factura,num_autorizacion,fecha_autorizacion,fecha_caducidad FROM factura_venta where id_cliente='$row[0]' and estado='Activo' and fecha_caducidad between '$fecha' and '$_GET[fin]'");
+        $sql1=pg_query("select id_factura_venta,num_factura,num_autorizacion,fecha_autorizacion,fecha_caducidad FROM factura_venta where id_cliente='$row[0]' and estado='Activo' and fecha_caducidad between '$fecha' and '$_GET[fin]' and id_usuario='$_SESSION[id]'");
         if(pg_num_rows($sql1)){
             if($repetido==0){
                 $codigo.='<h2 style="color:#1B8D72;font-weight: bold;font-size:13px;">RUC/CI: '.$row[1].'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$row[2].'</h2>';
