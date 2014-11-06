@@ -328,6 +328,7 @@ function inicio() {
     //////////////////////
     
     //////inmput////////
+    $("#cantidad").validCampoFranz("0123456789");
     $("#codigo").on("keyup", limpiar_campo1);
     $("#producto").on("keyup", limpiar_campo2);
     
