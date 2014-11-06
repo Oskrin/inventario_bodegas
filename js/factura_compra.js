@@ -896,6 +896,39 @@ function limpiar_campo3(){
     }
 }
 
+function numeros(e) { 
+tecla = (document.all) ? e.keyCode : e.which;
+if (tecla==8) return true;
+patron = /\d/;
+te = String.fromCharCode(tecla);
+return patron.test(te);
+}
+
+function punto(e){
+ var key;
+if (window.event)
+{
+    key = e.keyCode;
+}
+else if (e.which)
+{
+    key = e.which;
+}
+
+if (key < 48 || key > 57)
+{
+    if (key === 46 || key === 8)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+return true;   
+}
+
 function inicio() {
     jQuery().UItoTop({ easingType: 'easeOutQuart' });
     //////////////para hora///////////
@@ -991,57 +1024,9 @@ function inicio() {
     /////////////////////////////////
 
     //////////////para precio////////
-    $("#precio").keypress(function(e) {
-        var key;
-        if (window.event)
-        {
-            key = e.keyCode;
-        }
-        else if (e.which)
-        {
-            key = e.which;
-        }
-
-        if (key < 48 || key > 57)
-        {
-            if (key === 46 || key === 8)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        return true;
-    });
+    $("#precio").on("keypress",punto);
     ////////////////////////////////
 
-    ///////////adelanto//////////////
-    $("#adelanto").keypress(function(e) {
-        var key;
-        if (window.event)
-        {
-            key = e.keyCode;
-        }
-        else if (e.which)
-        {
-            key = e.which;
-        }
-
-        if (key < 48 || key > 57)
-        {
-            if (key === 46 || key === 8)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        return true;
-    });
     //////////////////////////////
 
     $("#tipo_docu").change(function() {
@@ -1276,8 +1261,8 @@ function inicio() {
             {name: 'cod_producto', index: 'cod_producto', editable: false, search: false, hidden: true, editrules: {edithidden: false}, align: 'center', frozen: true, width: 50},
             {name: 'codigo', index: 'codigo', editable: false, search: false, hidden: false, editrules: {edithidden: false}, align: 'center', frozen: true, width: 100},
             {name: 'detalle', index: 'detalle', editable: false, frozen: true, editrules: {required: true}, align: 'center', width: 290},
-            {name: 'cantidad', index: 'cantidad', editable: true, frozen: true, editrules: {required: true}, align: 'center', width: 70},
-            {name: 'precio_u', index: 'precio_u', editable: true, search: false, frozen: true, editrules: {required: true}, align: 'center', width: 110},
+            {name: 'cantidad', index: 'cantidad', editable: true, frozen: true, editrules: {required: true}, align: 'center', width: 70, editoptions:{maxlength: 10, size:15,dataInit: function(elem){$(elem).bind("keypress", function(e) {return numeros(e)})}}}, 
+            {name: 'precio_u', index: 'precio_u', editable: true, search: false, frozen: true, editrules: {required: true}, align: 'center', width: 110, editoptions:{maxlength: 10, size:15,dataInit: function(elem){$(elem).bind("keypress", function(e) {return punto(e)})}}}, 
             {name: 'descuento', index: 'descuento', editable: false, frozen: true, editrules: {required: true}, align: 'center', width: 70},
             {name: 'precio_t', index: 'precio_t', editable: false, search: false, frozen: true, editrules: {required: true}, align: 'center', width: 110},
             {name: 'iva', index: 'iva', align: 'center', width: 100, hidden: true}

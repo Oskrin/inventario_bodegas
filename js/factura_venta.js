@@ -1539,6 +1539,39 @@ function cancelar_acceso(){
     $("#clave").val("");
 }
 
+function numeros(e) { 
+tecla = (document.all) ? e.keyCode : e.which;
+if (tecla==8) return true;
+patron = /\d/;
+te = String.fromCharCode(tecla);
+return patron.test(te);
+}
+
+function punto(e){
+ var key;
+if (window.event)
+{
+    key = e.keyCode;
+}
+else if (e.which)
+{
+    key = e.which;
+}
+
+if (key < 48 || key > 57)
+{
+    if (key === 46 || key === 8)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+return true;   
+}
+
 function inicio() {
     jQuery().UItoTop({
         easingType: 'easeOutQuart'
@@ -1673,33 +1706,12 @@ function inicio() {
     $("#btnBuscar").click(function (){
         $("#buscar_facturas_venta").dialog("open");   
     })
-      
-    $("#saldo").keypress(function(e) {
-        var key;
-        if (window.event)
-        {
-            key = e.keyCode;
-        }
-        else if (e.which)
-        {
-            key = e.which;
-        }
-
-        if (key < 48 || key > 57)
-        {
-            if (key === 46 || key === 8)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        return true;
-    });
     
-    //////////////////buscar productos codigo////////////////
+     //////////////para precio////////
+    $("#p_venta").on("keypress",punto);
+    ////////////////////////////////
+      
+     //////////////////buscar productos codigo////////////////
     $("#codigo").keyup(function(e) {
         var precio = $("#tipo_precio").val(); 
         if (precio === "MINORISTA") {
@@ -2140,7 +2152,7 @@ function inicio() {
                 frozen: true, width: 100},
             {name: 'detalle', index: 'detalle', editable: false, frozen: true, editrules: {required: true}, align: 'center', width: 290},
             {name: 'cantidad', index: 'cantidad', editable: false, frozen: true, editrules: {required: true}, align: 'center', width: 70},
-            {name: 'precio_u', index: 'precio_u', editable: true, search: false, frozen: true, editrules: {required: true}, align: 'center', width: 110},
+            {name: 'precio_u', index: 'precio_u', editable: true, search: false, frozen: true, editrules: {required: true}, align: 'center', width: 110, editoptions:{maxlength: 10, size:15,dataInit: function(elem){$(elem).bind("keypress", function(e) {return punto(e)})}}}, 
             {name: 'descuento', index: 'descuento', editable: false, frozen: true, editrules: {required: true}, align: 'center', width: 90},
             {name: 'total', index: 'total', editable: false, search: false, frozen: true, editrules: {required: true}, align: 'center', width: 150},
             {name: 'iva', index: 'iva', align: 'center', width: 100, hidden: true},
