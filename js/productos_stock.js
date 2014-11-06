@@ -36,12 +36,27 @@ function limpiar_asignacion(){
     location.reload(); 
 }
 
+function a_entero(valor){  
+   //intento convertir a entero.  
+   //si era un entero no le afecta, si no lo era lo intenta convertir  
+   valor = parseInt(valor);  
+  
+    //comprobamos si es un valor entero  
+    if (isNaN(valor)) {  
+          //no es entero 0  
+          return 0;  
+    }else{  
+          //es un valor entero  
+          return valor;  
+    }  
+}
+
 function guardar_asignacion() {
     var tam = jQuery("#list2").jqGrid("getRowData");
     
     if($("#id_bodega").val() === ""){
         $("#nombres_bodega").focus();
-        alertify.alert("Seleccione una bodega");
+        alertify.error('Seleccione una bodega.');
     }else{
         if (tam.length > 0) {
             var v1 = new Array();
@@ -49,41 +64,41 @@ function guardar_asignacion() {
             var string_v1 = "";
             var string_v2 = "";
             var fil = jQuery("#list2").jqGrid("getRowData");
-            $("#list2").trigger("reloadGrid");
             var can = 0;
 
             for (var i = 0; i < fil.length; i++) {
                 var datos = fil[i];
                 v1[i] = datos['cod_productos'];
                 v2[i] = datos['cantidad'];
-                if(v2[i] == ""){
+                if (v2[i] == "" || isNaN(v2[i])) { 
                     can = 1;
+                  $("#list2").trigger("reloadGrid");
+                }else{
+                $("#list2").trigger("reloadGrid");
                 }
             }
             
-            if(can==1){
-             alertify.alert("Ingrese cantidad de los productos");   
+            if(can == 1){
+              alertify.error('Ingrese cantidad de los productos.');  
             }else{
-                for (i = 0; i < fil.length; i++) {
+               for (i = 0; i < fil.length; i++) {
                  string_v1 = string_v1 + "|" + v1[i];
                  string_v2 = string_v2 + "|" + v2[i];
                  }
-                 alert(string_v2);
+               $.ajax({
+                type: "POST",
+                url: "../procesos/guardar_asignacion.php",
+                data: "campo1=" + string_v1 + "&campo2=" + string_v2 + "&fecha_actual=" + $("#fecha_actual").val()+ "&hora_actual=" + $("#hora_actual").val()+ "&id_bodega=" + $("#id_bodega").val(),
+                success: function(data) {
+                    var val = data;
+                    if (val == 1) {
+                        alertify.alert("Asignación guardada correctamente", function(){location.reload();});
+                    }
+                }
+            });
             }
-            
-//            $.ajax({
-//                type: "POST",
-//                url: "../procesos/guardar_asignacion.php",
-//                data: "campo1=" + string_v1 + "&campo2=" + string_v2 + "&fecha_actual=" + $("#fecha_actual").val()+ "&hora_actual=" + $("#hora_actual").val()+ "&id_bodega=" + $("#id_bodega").val(),
-//                success: function(data) {
-//                    var val = data;
-//                    if (val == 1) {
-//                        alertify.alert("Asignación guardada correctamente", function(){location.reload();});
-//                    }
-//                }
-//            });
         } else {
-            alertify.alert("Error... Ingrese productos a las bodegas");
+            alertify.error('Ingrese productos a las bodegas.');
         }
     }
 }
@@ -136,6 +151,16 @@ function inicio() {
     };
     ////////////////////////////// 
      
+         $("#search_codigo").keyup(function() {
+      $("#list").jqGrid('setGridParam', {url: '../xml/search.php?valor=' + $("#search_codigo").val(), datatype: 'xml'}).trigger('reloadGrid');
+    });
+    
+     $("#search_producto").keyup(function() {
+      $("#list").jqGrid('setGridParam', {url: '../xml/search2.php?valor=' + $("#search_producto").val(), datatype: 'xml'}).trigger('reloadGrid');
+    });
+     
+     
+     
       $(window).bind('resize', function() {
     jQuery("#list").setGridWidth($('#centro').width() - 10);
     }).trigger('resize');
@@ -148,12 +173,11 @@ function inicio() {
             {name: 'cod_productos', index: 'cod_productos', editable: true, align: 'center', width: '100', search: false, frozen: true, editoptions: {readonly: 'readonly'}},
             {name: 'codigo', index: 'codigo', editable: true, align: 'center', width: '150', size: '10', search: true, frozen: true, formoptions: {elmsuffix: " (*)"}, editrules: {required: true}},
             {name: 'articulo', index: 'articulo', editable: true, align: 'center', width: '300', search: true, frozen: true, formoptions: {elmsuffix: " (*)"}, editrules: {required: true}},
-            {name: 'precio_compra', index: 'precio_compra', editable: true, align: 'center', width: '140', search: true, frozen: true, formoptions: {elmsuffix: " (*)"}, editrules: {required: true}},
+            {name: 'precio_compra', index: 'precio_compra', editable: true, hidden: true, align: 'center', width: '140', search: true, frozen: true, formoptions: {elmsuffix: " (*)"}, editrules: {required: true}},
             {name: 'stock', index: 'stock', editable: true, align: 'center', width: '140', search: false},
         ],
         rowNum: 10,
         rowList: [10, 20, 30],
-        width: null,
         height: 230,
         pager: jQuery('#pager'),
         editurl: "../procesos/procesosUsuarios.php",
@@ -220,13 +244,12 @@ function inicio() {
     {
         closeOnEscape: true
     });
-    $("#search_codigo").keyup(function() {
-      $("#list").jqGrid('setGridParam', {url: '../xml/search.php?valor=' + $("#search_codigo").val(), datatype: 'xml'}).trigger('reloadGrid');
-    });
-    
-     $("#search_producto").keyup(function() {
-      $("#list").jqGrid('setGridParam', {url: '../xml/search2.php?valor=' + $("#search_producto").val(), datatype: 'xml'}).trigger('reloadGrid');
-    });
+    jQuery("#list").setGridWidth($('#centro').width() - 10);
+
+
+      $(window).bind('resize', function() {
+    jQuery("#list2").setGridWidth($('#centro2').width() - 10);
+    }).trigger('resize');
     
     jQuery("#list2").jqGrid({
 	datatype: "local",
@@ -238,7 +261,7 @@ function inicio() {
                 {name:'codigo2',index:'codigo2', width:250},
    		{name:'articulo2',index:'articulo2', width:300},
    		{name:'cantidad',index:'cantidad', width:100, resizable:true,sortable:true,editable:true, align: 'center', editoptions:{ size:15,dataInit: function(elem){$(elem).bind("keypress", function(e) {return numeros(e)})}}}, 
-                {name:'disponibles', index: 'disponibles', editable: true, search: false, hidden: false, editrules: {edithidden: false}, align: 'center',frozen: true, width: 100},
+                {name:'disponibles', index: 'disponibles', editable: false, search: false, hidden: false, editrules: {edithidden: false}, align: 'center',frozen: true, width: 100},
    	],
    	rowNum:5,
    	rowList:[5,10,20],
@@ -285,8 +308,7 @@ function inicio() {
     viewtext: "Consultar",
     searchtext: "Buscar"
 });   
-    jQuery("#list").jqGrid('setFrozenColumns');
-    jQuery("#list").setGridWidth($('#centro').width() - 10);
+    jQuery("#list2").setGridWidth($('#centro').width() - 10);
 }
 
 

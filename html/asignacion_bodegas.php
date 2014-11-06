@@ -140,44 +140,48 @@ $cont1++;
                                                     <br />
 
                                                     <fieldset>
-                                                      <legend>Bodegas</legend>
-                                                      <section class="columna">
-                                                        <div class="control-group">											
-                                                                <label class="control-label" for="nombres_bodega"> Nombre Bodega:</label>
-                                                                <div class="controls">
-                                                                    <input type="text" name="nombres_bodega" id="nombres_bodega" placeholder="Buscar..." class="campo" />
-                                                                    <input type="hidden" name="id_bodega" id="id_bodega" class="campo" />
-                                                                </div>
-                                                            </div>  
-                                                      </section>
-
-                                                    <fieldset>
-                                                        <table>
-                                                            <tr>
-                                                                <td><label>Código</label></td>
-                                                                <td><input type="text" id="search_codigo" name="search_codigo" placeholder="Buscar..." class="campo"/></td>
-                                                                <td><label style="margin-left: 15px">Producto</label></td>
-                                                                <td><input type="text" id="search_producto" name="search_producto" class="campo" placeholder="Buscar..." style="width: 300px"/></td>
-                                                            </tr>
-                                                        </table>
-                                                        <br />
-                                                        <legend>Productos</legend>
+                                                        <legend>Bodegas</legend>
                                                         <div class="widget-content">
-                                                            <div class="tabbable" id="centro">
-                                                                <table id="list"></table>
-                                                                <div id="pager"></div>   
-                                                            </div>
-                                                        </div> 
-                                                    </fieldset>
-                                                    <br />
-
-                                                    <fieldset>
-                                                        <legend>Cantidad Productos</legend>   
-                                                        <div style="margin-left: 10px">
-                                                            <table id="list2" ></table>
-                                                            <div id="pager2"></div> 
+                                                            <section class="columna">
+                                                                <div class="control-group">											
+                                                                    <label class="control-label" for="nombres_bodega"> Nombre Bodega:</label>
+                                                                    <div class="controls">
+                                                                        <input type="text" name="nombres_bodega" id="nombres_bodega" placeholder="Buscar..." class="campo" />
+                                                                        <input type="hidden" name="id_bodega" id="id_bodega" class="campo" />
+                                                                    </div>
+                                                                </div>  
+                                                            </section>
                                                         </div>
-                                                    </fieldset>
+
+                                                        <fieldset>
+                                                            <table>
+                                                                <tr>
+                                                                    <td><label>Código</label></td>
+                                                                    <td><input type="text" id="search_codigo" name="search_codigo" placeholder="Buscar..." class="campo"/></td>
+                                                                    <td><label style="margin-left: 15px">Producto</label></td>
+                                                                    <td><input type="text" id="search_producto" name="search_producto" class="campo" placeholder="Buscar..." style="width: 300px"/></td>
+                                                                </tr>
+                                                            </table>
+                                                            <br />
+                                                            <legend>Productos</legend>
+                                                            <div class="widget-content">
+                                                                <div class="tabbable" id="centro">
+                                                                    <table id="list"></table>
+                                                                    <div id="pager"></div>   
+                                                                </div>
+                                                            </div> 
+                                                        </fieldset>
+                                                        <br />
+
+                                                        <fieldset>
+                                                            <legend>Cantidad Productos</legend>  
+                                                            <div class="widget-content">
+                                                                <div class="tabbable" id="centro2">
+                                                                    <table id="list2"></table>
+                                                                    <div id="pager2"></div>   
+                                                                </div>  
+                                                            </div>
+                                                        </fieldset>
                                                 </form>
 
                                                 <div id="ordenes" title="Búsqueda de Ordenes" class="">
