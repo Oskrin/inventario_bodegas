@@ -895,8 +895,7 @@ function agregar_proforma() {
                 var descuento = 0;
                 var multi = 0;
                 var total = 0;
-                for (var i = 0; i < tama; i = i + 9)
-                {
+                for (var i = 0; i < tama; i = i + 9) {
                     var temp = 0;
                     var temp1 = 0;
                     if(parseInt(data[i + 3]) < 0){
@@ -1198,7 +1197,7 @@ function flecha_atras(){
                             $("#nombre_cliente").val(data[i + 7]);
                             $("#direccion_cliente").val(data[i + 8]);
                             $("#telefono_cliente").val(data[i + 9]);
-                            $("#saldo").val(data[i + 10]);
+                            $("#correo").val(data[i + 10]);
                             $("#cancelacion").val(data[i + 11]);
                             $("#autorizacion").val(data[i + 12]);
                             $("#fecha_auto").val(data[i + 13]);
@@ -1344,7 +1343,7 @@ function flecha_siguiente(){
                             $("#nombre_cliente").val(data[i + 7]);
                             $("#direccion_cliente").val(data[i + 8]);
                             $("#telefono_cliente").val(data[i + 9]);
-                            $("#saldo").val(data[i + 10]);
+                            $("#correo").val(data[i + 10]);
                             $("#cancelacion").val(data[i + 11]);
                             $("#autorizacion").val(data[i + 12]);
                             $("#fecha_auto").val(data[i + 13]);
@@ -2447,7 +2446,7 @@ function inicio() {
                     $("#nombre_cliente").val(data[i + 7]);
                     $("#direccion_cliente").val(data[i + 8]);
                     $("#telefono_cliente").val(data[i + 9]);
-                    $("#saldo").val(data[i + 10]);
+                    $("#correo").val(data[i + 10]);
                     $("#cancelacion").val(data[i + 11]);
                     $("#autorizacion").val(data[i + 12]);
                     $("#fecha_auto").val(data[i + 13]);
@@ -2618,7 +2617,7 @@ function inicio() {
                     $("#nombre_cliente").val(data[i + 7]);
                     $("#direccion_cliente").val(data[i + 8]);
                     $("#telefono_cliente").val(data[i + 9]);
-                    $("#saldo").val(data[i + 10]);
+                    $("#correo").val(data[i + 10]);
                     $("#cancelacion").val(data[i + 11]);
                     $("#autorizacion").val(data[i + 12]);
                     $("#fecha_auto").val(data[i + 13]);

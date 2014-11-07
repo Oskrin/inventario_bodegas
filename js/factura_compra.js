@@ -359,8 +359,8 @@ function comprobar2() {
                                 for (var t = 0; t < fil.length; t++) {
                                     var dd = fil[t];
                                     if (dd['iva'] === "Si") {
-                                        subtotal = (subtotal + parseFloat(dd['precio_t']));
-                                        var sub = parseFloat(subtotal).toFixed(2);
+                                         subtotal = (subtotal + parseFloat(dd['precio_t']));
+                                         var sub = parseFloat(subtotal).toFixed(2);
                                          mu = (dd['cantidad'] * dd['precio_u']).toFixed(2);
                                          des = ((mu * dd['descuento'])/100).toFixed(2);
                                          descu = (parseFloat(descu) + parseFloat(des)).toFixed(2); 
