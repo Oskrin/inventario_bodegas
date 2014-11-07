@@ -31,7 +31,7 @@ session_start();
     $pv=0;
     $pc=0;
     $util=0;
-    $sql1=pg_query("select * from factura_venta where fecha_actual between '$_GET[inicio]' and '$_GET[fin]' and estado='Activo'");
+    $sql1=pg_query("select * from factura_venta where fecha_actual between '$_GET[inicio]' and '$_GET[fin]' and estado='Activo' and id_usuario='$_SESSION[id]'");
     if(pg_num_rows($sql1)){
         if($repetido==0){
             $codigo.='<table>';                      

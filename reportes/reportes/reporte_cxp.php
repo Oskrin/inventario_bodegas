@@ -25,7 +25,7 @@ session_start();
     $saldo=0;
     $repetido=0;    
     if ($_GET['tipo_pago'] == "EXTERNA") {        
-        $sql=pg_query("select * from c_pagarexternas,proveedores,usuario,empresa where c_pagarexternas.id_proveedor=proveedores.id_proveedor and c_pagarexternas.id_usuario=usuario.id_usuario and empresa.id_empresa=c_pagarexternas.id_empresa and num_factura='$_GET[id]'");        
+        $sql=pg_query("select * from c_pagarexternas,proveedores,usuario,empresa where c_pagarexternas.id_proveedor=proveedores.id_proveedor and c_pagarexternas.id_usuario=usuario.id_usuario and empresa.id_empresa=c_pagarexternas.id_empresa and num_factura='$_GET[id]' and usuario.id_usuario='$_SESSION[id]'");        
         while($row=pg_fetch_row($sql)){
             if($repetido==0){
                 $codigo.='<h2 style="font-size:14px; color:#1B8D72;font-weight: bold;">RUC/CI: '.$row[14].'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$row[15].'</h2>
@@ -43,7 +43,7 @@ session_start();
                 $codigo.='</table>';         
             }
             $codigo.='<table>';                                                           
-            $sql1=pg_query("select * from pagos_pagar where num_factura='$_GET[id]' and id_cuentas_pagar='$_GET[comprobante]'");
+            $sql1=pg_query("select * from pagos_pagar where num_factura='$_GET[id]' and id_cuentas_pagar='$_GET[comprobante]' and id_usuario='$_SESSION[id]'");
             while($row1=pg_fetch_row($sql1)){
                 $codigo.='<tr>                
                 <td style="width:100px;text-align:center;">'.$row1[0].'</td>
@@ -70,7 +70,7 @@ session_start();
         }
     }
     else{        
-        $sql=pg_query("select * from factura_compra,proveedores,usuario,empresa where factura_compra.id_proveedor=proveedores.id_proveedor and factura_compra.id_usuario=usuario.id_usuario and factura_compra.id_empresa=empresa.id_empresa and num_serie='$_GET[id]' and proveedores.id_proveedor='$_GET[proveedor]'");        
+        $sql=pg_query("select * from factura_compra,proveedores,usuario,empresa where factura_compra.id_proveedor=proveedores.id_proveedor and factura_compra.id_usuario=usuario.id_usuario and factura_compra.id_empresa=empresa.id_empresa and num_serie='$_GET[id]' and proveedores.id_proveedor='$_GET[proveedor]' and usuario.id_usuario='$_SESSION[id]'");        
         while($row=pg_fetch_row($sql)){
             $codigo.='<h2 style="font-size:14px; color:#1B8D72;font-weight: bold;">RUC/CI: '.$row[23].'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$row[24].'</h2>
             <h2 style="color:#1B8D72;font-size:14px;font-weight: bold;">Sección: '.$row[50].'</h2> ';
@@ -85,7 +85,7 @@ session_start();
             <td style="width:10px;text-align:center;">Fecha Pago</td></tr><hr>';
             $codigo.='</table>';                         
         }        
-        $sql=pg_query("select * from pagos_pagar where num_factura='$_GET[id]' and comprobante='$_GET[comprobante]'");
+        $sql=pg_query("select * from pagos_pagar where num_factura='$_GET[id]' and comprobante='$_GET[comprobante]' and id_usuario='$_SESSION[id]'");
         $meses=0;
         $id_pv=0;
         while($row=pg_fetch_row($sql)){                        
