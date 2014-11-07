@@ -30,21 +30,21 @@ session_start();
          $codigo.='<h2 style="font-weight: bold;font-size:12px;padding:5;margin:0px;border:solid 1px #000;color:blue;background:beige">MARCA: '."Todas".'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CATEGORÍA: '."Todas".'</h2><br />'; 
         $codigo.='<table border=0>';
          $codigo.='<tr style="font-weight:bold;">                
-        <td style="width:200px;text-align:center;">Código</td>
-        <td style="width:200px;text-align:center;">Producto</td>
-        <td style="width:100px;text-align:center;">Precio Minorista</td>
-        <td style="width:100px;text-align:center;">Precio Mayorista</td>
-        <td style="width:100px;text-align:center;">Stock</td>
+         <td style="width:90px;text-align:left;">Imagén</td>
+         <td style="width:180px;text-align:left;">Código</td>
+         <td style="width:300px;text-align:left;">Producto</td>
+         <td style="width:100px;text-align:left;">Precio Unitario</td>
+         <td style="width:60px;text-align:left;">Stock</td>
         </tr>
         <tr><td colspan=5><hr></td></tr>';
-        $sql=pg_query("select codigo,cod_barras,articulo,iva_minorista,iva_mayorista,stock,categoria,marca from productos ");
+        $sql=pg_query("select codigo,cod_barras,articulo,iva_minorista,iva_mayorista,stock_bodega,categoria,marca,imagen from productos, bodega_productos where productos.cod_productos = bodega_productos.cod_productos and id_bodega='$_SESSION[id_bodega]'");
         while($row=pg_fetch_row($sql)){
-            $codigo.='<tr>                
-            <td style="width:200px;text-align:center;">'.$row[0].'</td>    
-            <td style="width:200px;text-align:center;">'.$row[2].'</td>
+            $codigo.='<tr>     
+            <td style="width:90px;text-align:left;"><img src="../fotos_productos/'.$row[8].'" style="width:70px;height:90px;" /></td>           
+            <td style="width:180px;text-align:left;">'.$row[0].'</td>
+            <td style="width:300px;text-align:left;">'.$row[2].'</td>
             <td style="width:100px;text-align:center;">'.$row[3].'</td>
-            <td style="width:100px;text-align:center;">'.$row[4].'</td>
-            <td style="width:100px;text-align:center;">'.$row[5].'</td>
+            <td style="width:60px;text-align:center;">'.$row[5].'</td>
             </tr>';
         }
         $codigo.='</table>';   
@@ -53,21 +53,21 @@ session_start();
          $codigo.='<h2 style="font-weight: bold;font-size:12px;padding:5;margin:0px;border:solid 1px #000;color:blue;background:beige">MARCA: '."Todas".'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CATEGORÍA: '.$_GET['categoria'].'</h2><br />';  
          $codigo.='<table border=0>';
         $codigo.='<tr style="font-weight:bold;">                
-        <td style="width:200px;text-align:center;">Código</td>
-        <td style="width:200px;text-align:center;">Producto</td>
-        <td style="width:100px;text-align:center;">Precio Minorista</td>
-        <td style="width:100px;text-align:center;">Precio Mayorista</td>
-        <td style="width:100px;text-align:center;">Stock</td>
+        <td style="width:90px;text-align:left;">Imagén</td>
+         <td style="width:180px;text-align:left;">Código</td>
+         <td style="width:300px;text-align:left;">Producto</td>
+         <td style="width:100px;text-align:left;">Precio Unitario</td>
+         <td style="width:60px;text-align:left;">Stock</td>
         </tr>
         <tr><td colspan=5><hr></td></tr>';
-         $sql=pg_query("select codigo,cod_barras,articulo,iva_minorista,iva_mayorista,stock,categoria,marca from productos where categoria='$_GET[categoria]'");
+         $sql=pg_query("select codigo,cod_barras,articulo,iva_minorista,iva_mayorista,stock_bodega,categoria,marca,imagen from productos, bodega_productos where productos.cod_productos = bodega_productos.cod_productos and id_bodega='$_SESSION[id_bodega]' and categoria='$_GET[categoria]'");
          while($row=pg_fetch_row($sql)){
             $codigo.='<tr>                
-            <td style="width:200px;text-align:center;">'.$row[0].'</td>    
-            <td style="width:200px;text-align:center;">'.$row[2].'</td>
+             <td style="width:90px;text-align:left;"><img src="../fotos_productos/'.$row[8].'" style="width:70px;height:90px;" /></td>           
+            <td style="width:180px;text-align:left;">'.$row[0].'</td>
+            <td style="width:300px;text-align:left;">'.$row[2].'</td>
             <td style="width:100px;text-align:center;">'.$row[3].'</td>
-            <td style="width:100px;text-align:center;">'.$row[4].'</td>
-            <td style="width:100px;text-align:center;">'.$row[5].'</td>
+            <td style="width:60px;text-align:center;">'.$row[5].'</td>
             </tr>';
          }
         $codigo.='</table>';  
@@ -77,21 +77,21 @@ session_start();
          $codigo.='<h2 style="font-weight: bold;font-size:12px;padding:5;margin:0px;border:solid 1px #000;color:blue;background:beige">MARCA: '.$_GET['marca'].'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CATEGORÍA: '."Todas".'</h2><br />';    
          $codigo.='<table border=0>';
         $codigo.='<tr style="font-weight:bold;">                
-        <td style="width:200px;text-align:center;">Código</td>
-        <td style="width:200px;text-align:center;">Producto</td>
-        <td style="width:100px;text-align:center;">Precio Minorista</td>
-        <td style="width:100px;text-align:center;">Precio Mayorista</td>
-        <td style="width:100px;text-align:center;">Stock</td>
+        <td style="width:90px;text-align:left;">Imagén</td>
+         <td style="width:180px;text-align:left;">Código</td>
+         <td style="width:300px;text-align:left;">Producto</td>
+         <td style="width:100px;text-align:left;">Precio Unitario</td>
+         <td style="width:60px;text-align:left;">Stock</td>
         </tr>
         <tr><td colspan=5><hr></td></tr>';
-         $sql=pg_query("select codigo,cod_barras,articulo,iva_minorista,iva_mayorista,stock,categoria,marca from productos where marca='$_GET[marca]'");
+         $sql=pg_query("select codigo,cod_barras,articulo,iva_minorista,iva_mayorista,stock_bodega,categoria,marca,imagen from productos, bodega_productos where productos.cod_productos = bodega_productos.cod_productos and id_bodega='$_SESSION[id_bodega]' and marca='$_GET[marca]'");
          while($row=pg_fetch_row($sql)){
             $codigo.='<tr>                
-            <td style="width:200px;text-align:center;">'.$row[1].'</td>    
-            <td style="width:200px;text-align:center;">'.$row[2].'</td>
+             <td style="width:90px;text-align:left;"><img src="../fotos_productos/'.$row[8].'" style="width:70px;height:90px;" /></td>           
+            <td style="width:180px;text-align:left;">'.$row[0].'</td>
+            <td style="width:300px;text-align:left;">'.$row[2].'</td>
             <td style="width:100px;text-align:center;">'.$row[3].'</td>
-            <td style="width:100px;text-align:center;">'.$row[4].'</td>
-            <td style="width:100px;text-align:center;">'.$row[5].'</td>
+            <td style="width:60px;text-align:center;">'.$row[5].'</td>
             </tr>';
          }
         $codigo.='</table>';
@@ -100,21 +100,21 @@ session_start();
          $codigo.='<h2 style="font-weight: bold;font-size:12px;padding:5;margin:0px;border:solid 1px #000;color:blue;background:beige">MARCA: '.$_GET['marca'].'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CATEGORÍA: '.$_GET['categoria'].'</h2><br />';    
         $codigo.='<table border=0>';
         $codigo.='<tr style="font-weight:bold;">                
-        <td style="width:200px;text-align:center;">Código</td>
-        <td style="width:200px;text-align:center;">Producto</td>
-        <td style="width:100px;text-align:center;">Precio Minorista</td>
-        <td style="width:100px;text-align:center;">Precio Mayorista</td>
-        <td style="width:100px;text-align:center;">Stock</td>
+        <td style="width:90px;text-align:left;">Imagén</td>
+         <td style="width:180px;text-align:left;">Código</td>
+         <td style="width:300px;text-align:left;">Producto</td>
+         <td style="width:100px;text-align:left;">Precio Unitario</td>
+         <td style="width:60px;text-align:left;">Stock</td>
         </tr>
         <tr><td colspan=5><hr></td></tr>';
-         $sql=pg_query("select codigo,cod_barras,articulo,iva_minorista,iva_mayorista,stock,categoria,marca from productos where categoria='$_GET[categoria]' and marca='$_GET[marca]'");
+         $sql=pg_query("select codigo,cod_barras,articulo,iva_minorista,iva_mayorista,stock_bodega,categoria,marca,imagen from productos, bodega_productos where productos.cod_productos = bodega_productos.cod_productos and id_bodega='$_SESSION[id_bodega]' and categoria='$_GET[categoria]' and marca='$_GET[marca]'");
          while($row=pg_fetch_row($sql)){
             $codigo.='<tr>                
-            <td style="width:200px;text-align:center;">'.$row[1].'</td>    
-            <td style="width:200px;text-align:center;">'.$row[2].'</td>
+             <td style="width:90px;text-align:left;"><img src="../fotos_productos/'.$row[8].'" style="width:70px;height:90px;" /></td>           
+            <td style="width:180px;text-align:left;">'.$row[0].'</td>
+            <td style="width:300px;text-align:left;">'.$row[2].'</td>
             <td style="width:100px;text-align:center;">'.$row[3].'</td>
-            <td style="width:100px;text-align:center;">'.$row[4].'</td>
-            <td style="width:100px;text-align:center;">'.$row[5].'</td>
+            <td style="width:60px;text-align:center;">'.$row[5].'</td>
             </tr>';
          }
         $codigo.='</table>';
