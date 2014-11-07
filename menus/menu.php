@@ -159,8 +159,7 @@ function menu_1() {
                         <li><a href="" id="gastos_internos">Gastos Internos Fechas</a></li>         
                       </ul>
                   </li> 
-                  <li><a href="" id="orden_produccion">Ordenes de Producción</a></li>
-                  <li><a href="" id="ordenes_produccion_fechas">Ordenes de Producción Fechas</a></li>
+
                    <li><a href="#">Autorizaciones</a>
                       <ul>
                           <li><a href="" id="autorizaciones_cliente">Autorizaciones CLientes</a></li>
@@ -194,21 +193,21 @@ function menu_1() {
 
 function menu_2() {
         print(' <ul id="main-menu" class="sm sm-blue">
-            <li><a href="" target="_parent">Inicio</a></li>
-            <li><a href="" target="_parent">Ingresos</a>
+            <li><a href="../html/principal.php" target="_parent" class="inicio"><i class="icon-home"></i> Inicio</a></li>
+            <li><a href="" target="_parent"> <i class="icon-th-large"></i> Ingresos</a>
                 <ul>
                     <li><a href="../html/clientes.php" target="_blank">Clientes</a></li>
                     <li><a href="../html/proveedores.php"target="_blank">Proveedores</a></li>
                 </ul>
             </li>
             
-            <li><a href="" target="_parent">Procesos</a>
+            <li><a href="" target="_parent"><i class="icon-book"></i> Procesos</a>
                 <ul>
                     <li><a href="../html/inventario.php" target="_blank">Inventario</a></li>
                     <li><a href="../html/proformas.php" target="_blank">Proformas</a></li>
                     <li><a href="" target="_parent">Ventas</a>
                         <ul>
-                            <li><a href="../html/factura_venta.php" target="_blank">Ventas facturación</a></li>
+                            <li><a href="../html/factura_venta.php" target="_blank">Ventas facturacón</a></li>
                             <li><a href="../html/notasCredito.php" target="_blank">Notas de crédito</a></li>
                         </ul>
                     </li>
@@ -234,32 +233,18 @@ function menu_2() {
                     <li><a href="../html/gastos.php" target="_blank">Gastos Internos</a></li>
                 </ul>
             </li>
-            <li><a href="" target="_parent">Reportes</a>
+            <li><a href="" target="_parent"><i class="icon-print"></i> Reportes</a>
                 <ul>
                     <li><a href="#">Productos</a>
                         <ul>
                             <li><a href="" id="producto_general">Lista precios en general</a></li>
                             <li><a href="" id="producto_marca_categoria">Lista precios por Categorias y Marcas</a></li>
                             <li><a href="" id="producto_existencia_minima">Productos existencia mínima</a></li>
+                            <li><a href="" id="producto_bodega">Productos bodega</a></li>
+                            <li><a href="" id="producto_bodega_actual">Productos en bodega</a></li>
                         </ul>
                    </li>
-                   
-                   <li><a href="" target="_parent">Compras</a>
-                        <ul>
-                            
-                            <li><a href="">Resumen de compras locales</a>
-                               <ul>
-                                  <li><a href="" id="agrupados_proveedor">Agrupados por proveedor</a></li>
-                                  <li><a href="" id="reporte_factura_compra">Facturas</a></li>
-                                  <li><a href="" id="reporte_dev_compras">Devoluciones en compras</a></li>
-                                  <li><a href="" id="resumenFacturas">Facturas por proveedor</a></li>
-                                  <li><a href="" id="resumenFacturasCompras">Facturas Agrupadas</a></li>
-                                  
-                               </ul>
-                            </li>
-                        </ul>
-                   </li>
-                   
+                                     
                    <li><a href="" target="_parent">Ventas</a>
                         <ul>
                             <li><a href="" target="_parent">Flujo de caja</a>
@@ -306,21 +291,21 @@ function menu_2() {
                             </li>
                         </ul>
                    </li>
-                  <li><a href="">Proformas</a>
+                  <li><a href="#">Proformas</a>
                         <ul>
                             <li><a href="" target="_parent" id="proformas">Proformas</a></li>
                             <li><a href="" id="lista_proformas">Lista de Proformas</a></li>
                         </ul>
                   </li> 
-                  <li><a href="">Gastos</a>
+                  <li><a href="#">Gastos</a>
                       <ul>
                         <li><a href="" id="gastos">Gastos por factura</a></li> 
                         <li><a href="" id="gastos_general">Gastos general</a></li>         
                         <li><a href="" id="gastos_internos">Gastos Internos Fechas</a></li>         
                       </ul>
                   </li> 
-                  <li><a href="" id="orden_produccion">Ordenes de Producción</a></li>
-                   <li><a href="">Autorizaciones</a>
+
+                   <li><a href="#">Autorizaciones</a>
                       <ul>
                           <li><a href="" id="autorizaciones_cliente">Autorizaciones CLientes</a></li>
                           <li><a href="" id="autorizaciones_cliente_fechas">Autorizaciones entre fechas</a></li>
@@ -329,14 +314,14 @@ function menu_2() {
                   </li> 
                 </ul>
             </li>
-            
-            <li><a href="" target="_parent">Bienvenido</a>
+           
+            <li><a href="" target="_parent"><i class="icon-bookmark"></i> Bienvenido</a>
                 <ul>
                     <li><a href="" class="disabled">' . $_SESSION['nombres'] . '</a></li>
                     <li><a href="../html/index.php">Salir</a></li>
                 </ul>
             </li>
-            <li><a href="" target="_parent">Ayuda</a>
+            <li><a href="" target="_parent"><i class="icon-warning-sign"></i> Ayuda</a>
                 <ul class="mega-menu">
                     <li>
                         <!-- The mega drop down contents -->
