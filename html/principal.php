@@ -107,7 +107,7 @@ include '../menus/menu.php';
                                             <fieldset>
                                                 <div align="center">
                                                     <div class="dc_efec">                                                        
-                                                        <img src="../images/logo_empresa.jpg" width="80%" /> 
+                                                        <img src="../images/logo_empresa.fw.png" width="80%" /> 
                                                     </div>
                                                 </div>
                                             </fieldset>   
