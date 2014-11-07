@@ -7,7 +7,7 @@ session_start();
 	</head> 
 	<body>
 		<header>
-            <img src="../../images/logo_empresa.jpg" />
+            <img src="../../images/icono.jpg" />
             <div id="me">
                 <h2 style="text-align:center;border:solid 0px;width:100%;">'.$_SESSION['empresa'].'</h2>
                 <h4 style="text-align:center;border:solid 0px;width:100%;">'.$_SESSION['slogan'].'</h4>
@@ -28,7 +28,7 @@ session_start();
         $ivaT=0;
          $repetido=0;
         
-            $consulta1=pg_query("select num_factura,fecha_actual,hora_actual,fecha_cancelacion,tipo_precio,forma_pago,tarifa0,tarifa12,iva_venta,descuento_venta,total_venta,identificacion,nombres_cli,nombre_empresa,id_factura_venta from factura_venta, clientes,empresa,usuario where factura_venta.id_cliente=clientes.id_cliente and factura_venta.id_empresa=empresa.id_empresa and usuario.id_usuario=factura_venta.id_usuario  order by factura_venta.id_factura_venta asc");
+            $consulta1=pg_query("select num_factura,fecha_actual,hora_actual,fecha_cancelacion,tipo_precio,forma_pago,tarifa0,tarifa12,iva_venta,descuento_venta,total_venta,identificacion,nombres_cli,nombre_empresa,id_factura_venta from factura_venta, clientes,empresa,usuario where factura_venta.id_cliente=clientes.id_cliente and factura_venta.id_empresa=empresa.id_empresa and usuario.id_usuario=factura_venta.id_usuario usuario.id_usuario='$_SESSION[id]' order by factura_venta.id_factura_venta asc");
             $contador=pg_num_rows($consulta1);
             if($contador > 0){
                

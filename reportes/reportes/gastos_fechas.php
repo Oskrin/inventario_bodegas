@@ -7,7 +7,7 @@ session_start();
     </head> 
     <body>
         <header>
-            <img src="../../images/logo_empresa.jpg" />
+            <img src="../../images/icono.jpg" />
             <div id="me">
                 <h2 style="text-align:center;border:solid 0px;width:100%;">'.$_SESSION['empresa'].'</h2>
                 <h4 style="text-align:center;border:solid 0px;width:100%;">'.$_SESSION['slogan'].'</h4>
@@ -25,7 +25,7 @@ session_start();
     include '../../procesos/base.php';
     conectarse();    
     $total=0;
-    $sql=pg_query("select * from gastos_internos,usuario,proveedores where gastos_internos.id_usuario=usuario.id_usuario and gastos_internos.id_proveedor=proveedores.id_proveedor and fecha_actual between '$_GET[inicio]' and '$_GET[fin]'");
+    $sql=pg_query("select * from gastos_internos,usuario,proveedores where gastos_internos.id_usuario=usuario.id_usuario and gastos_internos.id_proveedor=proveedores.id_proveedor and fecha_actual between '$_GET[inicio]' and '$_GET[fin]' and usuario.id_usuario='$_SESSION[id]'");
     $codigo.='<table border=0 style="font-size:11px;">'; 
     if(pg_num_rows($sql)){
         $codigo.='<tr style="font-weight:bold">                

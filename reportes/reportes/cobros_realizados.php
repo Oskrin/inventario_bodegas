@@ -7,7 +7,7 @@ session_start();
     </head> 
     <body>
         <header>
-            <img src="../../images/logo_empresa.jpg" />
+            <img src="../../images/icono.jpg" />
             <div id="me">
                 <h2 style="text-align:center;border:solid 0px;width:100%;">'.$_SESSION['empresa'].'</h2>
                 <h4 style="text-align:center;border:solid 0px;width:100%;">'.$_SESSION['slogan'].'</h4>
@@ -37,10 +37,9 @@ session_start();
         $contador=0;   
         $num_fact=0;
         ///////////externas
-        $sql1=pg_query("select * from c_cobrarexternas where id_cliente='$row[0]' order by id_cliente asc");
+        $sql1=pg_query("select * from c_cobrarexternas where id_cliente='$row[0]'  and id_usuario='$_SESSION[id]' order by id_cliente asc");
          while($row1=pg_fetch_row($sql1)){
-            $sql2=pg_query("select * from pagos_cobrar where id_cliente='$row[0]' and num_factura='$row1[7]' order by id_cuentas_cobrar asc;");
-
+            $sql2=pg_query("select * from pagos_cobrar where id_cliente='$row[0]' and num_factura='$row1[7]' and id_usuario='$_SESSION[id]' order by id_cuentas_cobrar asc;");
             if(pg_num_rows($sql2)>0){
                 if($repetido==0){
                     $codigo.='<h2 style="color:#1B8D72;font-weight: bold;font-size:13px;">RUC/CI: '.$row[2].'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$row[3].'</h2>';
@@ -63,7 +62,7 @@ session_start();
                     $codigo.='<tr>
                     <td style="width:100px;text-align:center;">'.$row2[3].'</td>
                     <td style="width:100px;text-align:center;">'.$row2[9].'</td>
-                    <td style="width:150px;text-align:center;">'.substr($row2[8],8,30).'</td>
+                    <td style="width:150px;text-align:center;">'.' '.substr($row2[8],8,30).'</td>
                     <td style="width:100px;text-align:center;">'.($row2[12]+$row2[13]).'</td>
                     <td style="width:100px;text-align:center;">'.$row2[12].'</td>
                     <td style="width:100px;text-align:center;">'.$row2[13].'</td>

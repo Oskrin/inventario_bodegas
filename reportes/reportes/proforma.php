@@ -7,7 +7,7 @@ session_start();
     </head> 
     <body>
         <header>
-             <img src="../../images/logo_empresa.jpg" />
+             <img src="../../images/icono.jpg" />
             <div id="me">
                 <h2 style="text-align:center;border:solid 0px;width:100%;">'.$_SESSION['empresa'].'</h2>
                 <h4 style="text-align:center;border:solid 0px;width:100%;">'.$_SESSION['slogan'].'</h4>
@@ -22,7 +22,7 @@ session_start();
     </div>';
     include '../../procesos/base.php';
     conectarse();    
-    $sql=pg_query("select * from proforma,clientes,usuario,empresa where proforma.id_cliente=clientes.id_cliente and proforma.id_usuario=usuario.id_usuario and proforma.id_empresa=empresa.id_empresa and id_proforma='$_GET[id]'");
+    $sql=pg_query("select * from proforma,clientes,usuario,empresa where proforma.id_cliente=clientes.id_cliente and proforma.id_usuario=usuario.id_usuario and proforma.id_empresa=empresa.id_empresa and id_proforma='$_GET[id]' usuario.id_usuario='$_SESSION[id]'");
     while($row=pg_fetch_row($sql)){
         $temp1=$row[8];
         $temp2=$row[9];

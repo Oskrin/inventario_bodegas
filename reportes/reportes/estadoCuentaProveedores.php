@@ -7,7 +7,7 @@ require('../dompdf/dompdf_config.inc.php');
 	</head> 
 	<body>
 		<header>
-            <img src="../../images/logo_empresa.jpg" />
+            <img src="../../images/icono.jpg" />
             <div id="me">
                 <h2 style="text-align:center;border:solid 0px;width:100%;">GamasuD</h2>
                 <h4 style="text-align:center;border:solid 0px;width:100%;">Fabricación de Prendas de Vestir</h4>
@@ -29,7 +29,7 @@ require('../dompdf/dompdf_config.inc.php');
         $repetido=0;
         $consulta=pg_query("select * from proveedores where id_proveedor='$_GET[id]' order by id_cliente asc");
         while($row=pg_fetch_row($consulta)){
-            $consulta1=pg_query("select * from c_pagarexternas where id_proveedor='$_GET[id]' and fecha_actual between '$_GET[inicio]' and '$_GET[fin]' order by id_c_cobrarexternas asc");
+            $consulta1=pg_query("select * from c_pagarexternas where id_proveedor='$_GET[id]' and fecha_actual between '$_GET[inicio]' and '$_GET[fin]' and id_usuario='$_SESSION[id]' order by id_c_cobrarexternas asc");
              $codigo.='<h2 style="font-weight: bold;font-size:12px;padding:5;margin:0px;border:solid 1px #000;color:blue;background:beige">RUC/CI: '.$row[2].'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$row[3].'</h2>';
             while($row1=pg_fetch_row($consulta1)){
                 $total=0;

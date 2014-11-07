@@ -7,7 +7,7 @@ session_start();
     </head> 
     <body>
         <header>
-            <img src="../images/logo_empresa.jpg" />
+            <img src="../images/icono.jpg" />
             <div id="me">
                 <<h2 style="text-align:center;border:solid 0px;width:100%;">'.$_SESSION['empresa'].'</h2>
                 <h4 style="text-align:center;border:solid 0px;width:100%;">'.$_SESSION['slogan'].'</h4>

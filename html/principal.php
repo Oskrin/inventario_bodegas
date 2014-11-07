@@ -71,23 +71,44 @@ include '../menus/menu.php';
                 ?>  
             </div>
             <!-- /Fin  Menu Principal -->
+            <style type="text/css">
+                
 
+            </style>
             <div class="main">
                 <div class="main-inner">
                     <div class="container">
                         <div class="row">
                             <div class="span12">      		
-                                <div class="widget ">
+                                <div class="widget " >
                                     <div class="widget-header">
                                         <i class="icon-th-large"></i>
                                         <h3>Responsable:  <?php echo $_SESSION['nombres'] ?></h3>
                                     </div> <!-- /widget-header -->
 
-                                    <div class="widget-content">
+                                    <div class="widget-content" style="background: #2E2D32;">
+                                    <style type="text/css">
+                                        .dc_efec{
+
+                                        transition: all .2s ease-in-out;
+                                        text-align: center;
+                                        }
+                                        .dc_efec:hover{
+                                            transform: scale(1.1);
+                                             -webkit-animation: tiembla 5s ;
+                                        }
+                                        @-webkit-keyframes tiembla{
+                                        0%  { -webkit-transform:rotateZ(-5deg); }
+                                        50% { -webkit-transform:rotateZ( 0deg) scale(.8); }
+                                        100%{ -webkit-transform:rotateZ( 5deg); }
+                                    }
+                                    </style>
                                         <div class="tabbable" id="centro">
                                             <fieldset>
                                                 <div align="center">
-                                                    <img src="../images/logo_empresa.jpg" width="100%" /> 
+                                                    <div class="dc_efec">                                                        
+                                                        <img src="../images/logo_empresa.fw.png" width="80%" /> 
+                                                    </div>
                                                 </div>
                                             </fieldset>   
                                         </div>
