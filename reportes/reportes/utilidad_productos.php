@@ -7,7 +7,7 @@ session_start();
     </head> 
     <body>
         <header>
-           <img src="../../images/logo_empresa.jpg" />
+           <img src="../../images/icono.jpg" />
             <div id="me">
                 <h2 style="text-align:center;border:solid 0px;width:100%;">'.$_SESSION['empresa'].'</h2>
                 <h4 style="text-align:center;border:solid 0px;width:100%;">'.$_SESSION['slogan'].'</h4>
@@ -33,7 +33,7 @@ session_start();
         $repetido=0;   
         $contador=0; 
         $total=0;
-        $sql1=pg_query("select * from factura_venta where fecha_actual between '$_GET[inicio]' and '$_GET[fin]' and id_cliente='$row[0]' and estado='Activo'");
+        $sql1=pg_query("select * from factura_venta where fecha_actual between '$_GET[inicio]' and '$_GET[fin]' and id_cliente='$row[0]' and estado='Activo' and id_usuario='$_SESSION[id]'");
         if(pg_num_rows($sql1)){
             if($repetido==0){
                 $total=0;

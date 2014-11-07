@@ -21,7 +21,7 @@ session_start();
     $subtotal=0;
     $iva12=0;
     $total=0;  
-    $consulta=pg_query("select id_devolucion_venta,fecha_actual,num_serie,tarifa0,tarifa12,iva_venta,descuento_venta,total_venta,observaciones,identificacion,nombres_cli,telefono,direccion_cli from devolucion_venta,clientes where devolucion_venta.id_cliente=clientes.id_cliente and devolucion_venta.id_devolucion_venta='$_GET[id]'");
+    $consulta=pg_query("select id_devolucion_venta,fecha_actual,num_serie,tarifa0,tarifa12,iva_venta,descuento_venta,total_venta,observaciones,identificacion,nombres_cli,telefono,direccion_cli from devolucion_venta,clientes where devolucion_venta.id_cliente=clientes.id_cliente and devolucion_venta.id_devolucion_venta='$_GET[id]' and id_usuario='$_SESSION[id]'");
     while($row=pg_fetch_row($consulta)){
         $subtotal0=$row[3];
         $subtotal12=$row[4];

@@ -100,6 +100,8 @@ function inicio(){
     $("#gastos_internos").on("click",gastos_internos);
     $("#diario_caja").on("click",diario_caja);
     $("#ordenes_produccion_fechas").on("click",ordenes_produccion_fechas);
+    $("#producto_bodega").on("click",producto_bodega);
+    $("#producto_bodega_actual").on("click",producto_bodega_actual);
     
 }
 function Defecto(e){
@@ -1474,4 +1476,29 @@ function fn_ordenes_produccion_fechas(e){
     else{      
         window.open('../reportes/reportes/ordenes_produccion_fechas.php?inicio='+$('#inicio').val()+'&fin='+$('#fin').val(), '_blank');      
     }   
+}
+///////////////
+function producto_bodega(e){    
+    modal.open({content: "<input type='radio' name='group1' id='pdf' value='Reporte Pdf' checked> <label for='pdf'>Reporte Pdf</label> <br> <a 'id='generar' style='cursor:pointer;font-size:12px;margin-left:40px' class='generarProducto_bodega' onclick='return reporte_producto_bodega(event)' href='#'>Generar Reporte</a>"});
+    $('.generarProducto_bodega').button();  
+    e.preventDefault();  
+}
+function reporte_producto_bodega(e){
+    var hoja=$("#tam_hoja").val()
+    var tipo;  
+    window.open('../reportes_sistema/reporte_productos_bodega.php', '_blank');        
+    modal.close();  
+}
+////
+function producto_bodega_actual(e){    
+    modal.open({content: "<input type='radio' name='group1' id='pdf' value='Reporte Pdf' checked> <label for='pdf'>Reporte Pdf</label> <br><label>Bodega</label><select id='sel_bodega' style='width:150px;float:right'></select><br><a 'id='generar' style='cursor:pointer;font-size:12px;margin-left:40px' class='generarBodega' onclick='return fn_producto_bodega_actual(event)' href='#'>Generar Reporte</a>"});
+    $("#sel_bodega").load("../procesos/carga_bodegas.php");   
+    $('.generarBodega').button();  
+    e.preventDefault();  
+}
+function fn_producto_bodega_actual(e){
+    var hoja=$("#tam_hoja").val()
+    var tipo;
+    window.open('../reportes_sistema/reporte_productos_por_bodega.php?id='+$("#sel_bodega").val()+'&bodega='+$("#sel_bodega option:selected").text(), '_blank');        
+    modal.close();  
 }

@@ -79,6 +79,8 @@ function menu_1() {
                             <li><a href="" id="producto_general">Lista precios en general</a></li>
                             <li><a href="" id="producto_marca_categoria">Lista precios por Categorias y Marcas</a></li>
                             <li><a href="" id="producto_existencia_minima">Productos existencia mínima</a></li>
+                            <li><a href="" id="producto_bodega">Productos bodega</a></li>
+                            <li><a href="" id="producto_bodega_actual">Productos en bodega</a></li>
                         </ul>
                    </li>
                    

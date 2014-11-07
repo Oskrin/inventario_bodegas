@@ -7,7 +7,7 @@ session_start();
     </head> 
     <body>
         <header>
-            <<img src="../../images/logo_empresa.jpg" />
+            <<img src="../../images/icono.jpg" />
             <div id="me">
                 <h2 style="text-align:center;border:solid 0px;width:100%;">'.$_SESSION['empresa'].'</h2>
                 <h4 style="text-align:center;border:solid 0px;width:100%;">'.$_SESSION['slogan'].'</h4>
@@ -32,7 +32,7 @@ session_start();
     $valor_pagado=0;
     $sql=pg_query("SELECT DISTINCT(id_factura_venta) FROM gastos where fecha_actual between '$_GET[inicio]' and '$_GET[fin]' order by id_factura_venta asc;");
     while($row=pg_fetch_row($sql)){
-        $sql1=pg_query("select id_factura_venta,num_factura,nombres_cli,total_venta,fecha_actual from factura_venta,clientes where factura_venta.id_cliente=clientes.id_cliente and id_factura_venta='$row[0]'");
+        $sql1=pg_query("select id_factura_venta,num_factura,nombres_cli,total_venta,fecha_actual from factura_venta,clientes where factura_venta.id_cliente=clientes.id_cliente and id_factura_venta='$row[0]' and id_usuario='$_SESSION[id]'");
         while($row1=pg_fetch_row($sql1)){
             $codigo.='<h2 style="font-size:14px; color:#1B8D72;font-weight: bold;">NRO. FACTURA: '.$row1[1].'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$row1[2].'</h2>';
             $id_fac=$row1[0];
@@ -40,7 +40,7 @@ session_start();
             $total=$row1[3];
             $fecha=$row1[4];
         }
-        $sql2=pg_query("SELECT * FROM gastos where fecha_actual between '$_GET[inicio]' and '$_GET[fin]' and id_factura_venta='$id_fac' order by id_factura_venta asc");
+        $sql2=pg_query("SELECT * FROM gastos where fecha_actual between '$_GET[inicio]' and '$_GET[fin]' and id_factura_venta='$id_fac' and id_usuario='$_SESSION[id]' order by id_factura_venta asc");
             $codigo.='<table border=0>';                      
             $codigo.='<tr>                
             <td style="width:90px;text-align:center;">Num. Factura</td>    
