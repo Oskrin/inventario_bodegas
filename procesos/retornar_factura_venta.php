@@ -7,7 +7,7 @@ error_reporting(0);
 $id = $_GET['com'];
 $arr_data = array();
 
-$consulta = pg_query("select  F.fecha_actual, F.hora_actual, U.nombre_usuario, U.apellido_usuario, F.num_factura, C.id_cliente, C.identificacion, C.nombres_cli, C.direccion_cli, C.telefono, C.credito_cupo, F.fecha_cancelacion, F.num_autorizacion, F.fecha_autorizacion, F.fecha_caducidad, F.tipo_precio, F.estado, F.tarifa0, F.tarifa12, F.iva_venta, F.descuento_venta, F.total_venta  from factura_venta F, clientes C, usuario U where F.id_usuario = U.id_usuario and F.id_cliente = C.id_cliente and F.comprobante='" . $id . "'");
+$consulta = pg_query("select  F.fecha_actual, F.hora_actual, U.nombre_usuario, U.apellido_usuario, F.num_factura, C.id_cliente, C.identificacion, C.nombres_cli, C.direccion_cli, C.celular, C.correo, F.fecha_cancelacion, F.num_autorizacion, F.fecha_autorizacion, F.fecha_caducidad, F.tipo_precio, F.estado, F.tarifa0, F.tarifa12, F.iva_venta, F.descuento_venta, F.total_venta  from factura_venta F, clientes C, usuario U where F.id_usuario = U.id_usuario and F.id_cliente = C.id_cliente and F.comprobante='" . $id . "'");
 while ($row = pg_fetch_row($consulta)) {
     $arr_data[] = $row[0];
     $arr_data[] = $row[1];

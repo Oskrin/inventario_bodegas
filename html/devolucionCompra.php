@@ -9,7 +9,6 @@ include '../procesos/base.php';
 conectarse();
 error_reporting(0);
 
-
 /////////////////contador devolucion///////////
 $cont1 = 0;
 $consulta = pg_query("select max(id_devolucion_compra) from devolucion_compra");
@@ -199,7 +198,7 @@ $cont1++;
                                                                 <td><label>Producto:</label></td>   
                                                                 <td><label>Cantidad:</label></td>   
                                                                 <td><label>Precio:</label></td>
-                                                                <!--<td><label>Series:</label></td>-->
+                                                                <td><label>Devolución:</label></td>
                                                             </tr>
 
                                                             <tr>
@@ -208,7 +207,7 @@ $cont1++;
                                                                 <td><input type="text" name="cantidad" id="cantidad" class="campo" style="width: 60px" maxlength="10"/></td>
                                                                 <td><input type="text" name="precio" id="precio" class="campo" style="width: 60px" maxlength="10"/></td>
                                                                 <!--<td><input type="button" class="btn btn-primary" id='btncargar' style="margin-top: -10px" value="Cargar"></td>-->
-                                                                <td><input type="hidden" name="canti" id="canti" class="campo" style="width: 60px" maxlength="10" value="" /></td>
+                                                                <td><input type="text" name="canti" id="canti" class="campo" style="width: 60px" maxlength="10" readonly value="" /></td>
                                                                 <td><input type="hidden" name="descuento" id="descuento" class="campo" style="width: 60px" maxlength="10"/></td>
                                                                 <td><input type="hidden" name="iva_producto" id="iva_producto" class="campo" style="width: 60px" maxlength="10" value="" /></td>
                                                                 <td><input type="hidden" name="carga_series" id="carga_series" class="campo" style="width: 100px" maxlength="10"/></td>

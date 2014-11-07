@@ -714,12 +714,27 @@ function limpiar_campo1(){
     }
 }
 
+function limpiar_campo2(){
+    if($("#serie").val() === ""){
+        $("#id_factura_venta").val("");
+        $("#cod_producto").val("");
+        $("#codigo").val("");
+        $("#producto").val("");
+        $("#cantidad").val("");
+        $("#precio").val("");
+        $("#canti").val("");
+        $("#descuento").val("");
+    }
+}
+
 function limpiar_campo3(){
     if($("#codigo").val() === ""){
         $("#cod_producto").val("");
         $("#producto").val("");
         $("#cantidad").val("");
         $("#precio").val("");
+        $("#canti").val("");
+        $("#descuento").val("");
     }
 }
 
@@ -729,6 +744,8 @@ function limpiar_campo4(){
         $("#codigo").val("");
         $("#cantidad").val("");
         $("#precio").val("");
+        $("#canti").val("");
+        $("#descuento").val("");
     }
 }
 
@@ -801,6 +818,7 @@ function inicio() {
     ////////////////eventos////////////////////
     //$("input[type=text]").on("keyup", enter);
     $("#ruc_ci").on("keyup", limpiar_campo1);
+    $("#serie").on("keyup", limpiar_campo2);
     $("#codigo").on("keyup", limpiar_campo3);
     $("#producto").on("keyup", limpiar_campo4);
     $("#codigo").on("keypress", enter);
