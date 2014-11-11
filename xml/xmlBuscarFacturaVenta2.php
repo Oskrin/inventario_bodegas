@@ -57,6 +57,7 @@ if ($search == 'false') {
         $SQL = "select F.id_factura_venta, C.identificacion, C.nombres_cli, F.num_factura, F.total_venta, F.fecha_actual from factura_venta F, clientes C, usuario U where F.id_cliente = C.id_cliente and F.id_usuario = U.id_usuario and F.id_usuario = '$_SESSION[id]' and $_GET[searchField] not like '%$_GET[searchString]%' ORDER BY $sidx $sord offset $start limit $limit";
     }
 }
+
 $result = pg_query($SQL);
 header("Content-type: text/xml;charset=utf-8");
 $s = "<?xml version='1.0' encoding='utf-8'?>";
@@ -73,17 +74,16 @@ while ($row = pg_fetch_row($result)) {
     $s .= "<cell>" . $row[5] . "</cell>";
     $s .= "<cell>" . $row[4] . "</cell>";
     $SQL2 = pg_query("select saldo from gastos  where id_factura_venta='$row[0]' order by id_gastos desc limit 1");
-    if(pg_num_rows($SQL2)){
-         while ($row1 = pg_fetch_row($SQL2)) {
-            $s .= "<cell>" . $row1[0] . "</cell>"; 
-         }
+    if (pg_num_rows($SQL2)) {
+        while ($row1 = pg_fetch_row($SQL2)) {
+            $s .= "<cell>" . $row1[0] . "</cell>";
+        }
+    } else {
+        $s .= "<cell>" . $row[4] . "</cell>";
     }
-    else{
-        $s .= "<cell>".$row[4]."</cell>";
-    }  
-            
-        
-    
+
+
+
     $s .= "</row>";
 }
 $s .= "</rows>";

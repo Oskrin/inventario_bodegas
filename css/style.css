@@ -540,9 +540,10 @@ textarea {
         text-align: justify;
     }
 
-    .form-actions{
+    .form-actions {
         width: 100%;  
         box-sizing: border-box;
+        text-align: justify;
     }
 }
 

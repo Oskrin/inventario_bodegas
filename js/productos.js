@@ -687,12 +687,14 @@ function inicio() {
     jQuery("#list").jqGrid('navButtonAdd', '#pager', {caption: "Añadir",
         onClickButton: function() {
             var id = jQuery("#list").jqGrid('getGridParam', 'selrow');
-            jQuery('#list').jqGrid('restoreRow', id);
-            //var ret = jQuery("#list").jqGrid('getRowData', id);
+
             if (id) {
-                jQuery("#list").jqGrid('GridToForm', id, "#productos_form");
-                $("#btnGuardar").attr("disabled", true);
-                $("#productos").dialog("close");
+            jQuery('#list').jqGrid('restoreRow', id);   
+            var ret = jQuery("#list").jqGrid('getRowData', id);
+            $("#foto").attr("src", "../fotos_productos/"+ ret.imagen);
+            jQuery("#list").jqGrid('GridToForm', id, "#productos_form");
+            $("#btnGuardar").attr("disabled", true);
+            $("#productos").dialog("close"); 
             } else {
                 alertify.alert("Seleccione un fila");
             }

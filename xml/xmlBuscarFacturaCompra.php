@@ -56,8 +56,8 @@ if ($search == 'false') {
     if ($_GET['searchOper'] == 'ni') {
         $SQL = "select F.id_factura_compra, P.identificacion_pro, P.empresa_pro, F.num_serie, F.total_compra, F.fecha_actual from factura_compra F, proveedores P, usuario U where F.id_proveedor = P.id_proveedor and F.id_usuario = U.id_usuario and F.id_usuario='$_SESSION[id]' and $_GET[searchField] not like '%$_GET[searchString]%' ORDER BY $sidx $sord offset $start limit $limit";
     }
-    //echo $SQL;
 }
+
 $result = pg_query($SQL);
 header("Content-type: text/xml;charset=utf-8");
 $s = "<?xml version='1.0' encoding='utf-8'?>";
