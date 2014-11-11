@@ -213,7 +213,8 @@ class PDF extends PDF_Rotate
 	///////////////
 	 $pdf->SetTextColor(70,119,159);             			
 	if($_GET['hoja']=='A4'){
-		$sql=pg_query("select id_factura_venta,num_factura,nombre_empresa,telefono_empresa,direccion_empresa,email_empresa,pagina_web,ruc_empresa,nombres_cli,identificacion,direccion_cli,telefono,ciudad,fecha_actual,forma_pago,fecha_cancelacion,nombre_usuario,apellido_usuario from factura_venta,clientes,empresa,usuario where factura_venta.id_cliente=clientes.id_cliente and empresa.id_empresa=factura_venta.id_empresa and factura_venta.id_usuario=usuario.id_usuario and factura_venta.id_factura_venta='$_GET[id]'");				$numfilas = pg_num_rows($sql);
+		$sql=pg_query("select id_factura_venta,num_factura,nombre_empresa,telefono_empresa,direccion_empresa,email_empresa,pagina_web,ruc_empresa,nombres_cli,identificacion,direccion_cli,telefono,ciudad,fecha_actual,forma_pago,fecha_cancelacion,nombre_usuario,apellido_usuario from factura_venta,clientes,empresa,usuario where factura_venta.id_cliente=clientes.id_cliente and empresa.id_empresa=factura_venta.id_empresa and factura_venta.id_usuario=usuario.id_usuario and factura_venta.id_factura_venta='$_GET[id]'");				
+		$numfilas = pg_num_rows($sql);
 		for ($i=0; $i<$numfilas; $i++)
 		{		
 			$fila = pg_fetch_row($sql);								
