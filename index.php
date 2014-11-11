@@ -3,7 +3,7 @@
 <head>
 <script type="text/javascript">
 	function cargar(){		
-		window.open("html/");
+		window.location.href="html/index.php";
 	}
 </script>
 </head>
