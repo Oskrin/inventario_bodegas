@@ -272,8 +272,8 @@ function fn_reporte_factura_venta(e){
         window.open('../phpexcel/factura_venta.php?id='+$('#idProv').val(), '_blank');    
     }
     else{
-        
-            window.open('../reportes_sistema/factura_venta.php?hoja='+"A4"+"&id="+$('#idFac').val(), '_blank');      
+            window.open("../reportes_sistema/factura_venta_epson.php?id="+$("#idFac").val(),'_blank');
+            //window.open('../reportes_sistema/factura_venta.php?hoja='+"A4"+"&id="+$('#idFac').val(), '_blank');      
         
     }   
 }

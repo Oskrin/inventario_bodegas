@@ -1118,7 +1118,7 @@ function guardar_factura() {
                                                         var val = data;
                                                         if (val == 1) {
                                                             alertify.alert("Factura Guardada correctamente", function(){
-                                                                window.open("../reportes_sistema/factura_venta.php?hoja=A4&id="+$("#comprobante").val(),'_blank');
+                                                                window.open("../reportes_sistema/factura_venta_epson.php?id="+$("#comprobante").val(),'_blank');
                                                                 location.reload();
                                                             });
                                                         }
@@ -1617,7 +1617,8 @@ function inicio() {
         e.preventDefault();
     });
     $("#btnImprimir").click(function (){        
-        window.open("../reportes_sistema/factura_venta.php?hoja=A4&id="+$("#comprobante").val(),'_blank');
+        window.open("../reportes_sistema/factura_venta_epson.php?id="+$("#comprobante").val(),'_blank');
+        //window.open("../reportes_sistema/factura_venta.php?hoja=A4&id="+$("#comprobante").val(),'_blank');
     });
     $("#btnNuevo").click(function(e) {
         e.preventDefault();
