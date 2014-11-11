@@ -183,7 +183,10 @@ include '../menus/menu.php';
                                                     <div class="control-group">
                                                         <label class="control-label" for="email">E-mail: </label>
                                                         <div class="controls">
-                                                            <input type="text" name="email" id="email" placeholder="xxxx@example.com" class="campo"/>
+                                                            <div class="input-prepend input-append">
+                                                                <span class="add-on">@</span>
+                                                                <input type="text" name="email" id="email" placeholder="xxxx@example.com" class="campo" style="width: 165px"/>
+                                                            </div>
                                                         </div>
                                                     </div>
 
