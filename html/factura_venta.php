@@ -182,17 +182,6 @@ $cont1++;
 
                                                         <table cellpadding="2" style="margin-left: 10px">
                                                             <tr>
-                                                                <td><label for="autorizacion"  style="width: 100%">Autorización: </label></td>
-                                                                <td><input type="text" name="autorizacion" id="autorizacion" class="campo" maxlength="45"/></td>
-                                                                <td><label for="fecha_auto" style="margin-left: 10px">Fecha autorización:</label></td>
-                                                                <td><input type="text" name="fecha_auto" id="fecha_auto" class="campo" style="width: 120px; margin-left: 5px" value="<?php echo date("Y-m-d"); ?>" readonly /></td>
-                                                                <td><label for="fecha_caducidad" style="margin-left: 10px">Fecha caducidad:</label></td>
-                                                                <td><input type="text" name="fecha_caducidad" id="fecha_caducidad" class="campo" style="width: 120px; margin-left: 5px" value="<?php echo date("Y-m-d"); ?>" readonly /></td>
-                                                            </tr>
-                                                        </table>
-
-                                                        <table cellpadding="2" style="margin-left: 10px">
-                                                            <tr>
                                                                 <td><label for="formas"  style="width: 100%">Formas de Pago:</label></td>
                                                                 <td><select name="formas" id="formas">
                                                                         <option value="Contado">Contado</option>
@@ -205,6 +194,17 @@ $cont1++;
                                                                 <td><input type="text" name="meses" id="meses"  class="campo" style="width: 100px"/></td>
                                                                 <td><label for="cuotas" style="margin-left: 10px">Cuotas:</label></td>
                                                                 <td><select id="cuotas" name="cuotas" style="width: 100px"></select></td>
+                                                            </tr>
+                                                        </table>
+                                                        
+                                                        <table cellpadding="2" style="display: none">
+                                                            <tr>
+                                                                <td><label for="autorizacion"  style="width: 100%">Autorización: </label></td>
+                                                                <td><input type="text" name="autorizacion" id="autorizacion" class="campo" maxlength="45"/></td>
+                                                                <td><label for="fecha_auto" style="margin-left: 10px">Fecha autorización:</label></td>
+                                                                <td><input type="text" name="fecha_auto" id="fecha_auto" class="campo" style="width: 120px; margin-left: 5px" value="<?php echo date("Y-m-d"); ?>" readonly /></td>
+                                                                <td><label for="fecha_caducidad" style="margin-left: 10px">Fecha caducidad:</label></td>
+                                                                <td><input type="text" name="fecha_caducidad" id="fecha_caducidad" class="campo" style="width: 120px; margin-left: 5px" value="<?php echo date("Y-m-d"); ?>" readonly /></td>
                                                             </tr>
                                                         </table>
 

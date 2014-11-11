@@ -22,7 +22,7 @@ session_start();
     </div>';
     include '../../procesos/base.php';
     conectarse();    
-    $sql=pg_query("select * from proforma,clientes,usuario,empresa where proforma.id_cliente=clientes.id_cliente and proforma.id_usuario=usuario.id_usuario and proforma.id_empresa=empresa.id_empresa and id_proforma='$_GET[id]' usuario.id_usuario='$_SESSION[id]'");
+    $sql=pg_query("select * from proforma,clientes,usuario,empresa where proforma.id_cliente=clientes.id_cliente and proforma.id_usuario=usuario.id_usuario and proforma.id_empresa=empresa.id_empresa and id_proforma='$_GET[id]' and usuario.id_usuario='$_SESSION[id]'");
     while($row=pg_fetch_row($sql)){
         $temp1=$row[8];
         $temp2=$row[9];
@@ -51,7 +51,7 @@ session_start();
         <td style="width:100px;text-align:left;">'.$row[34].'</td>
        </tr></table>';          
     }   
-    $sql=pg_query("select * from detalle_proforma,productos where id_proforma='$_GET[id]'  and detalle_proforma.cod_productos=productos.cod_productos order by id_detalle_proforma asc;");
+    $sql=pg_query("select * from detalle_proforma,productos where id_proforma='$_GET[id]' and detalle_proforma.cod_productos=productos.cod_productos order by id_detalle_proforma asc;");
     $codigo.='<br/><table border=0><tr>
     <td style="width:130px;text-align:center;border:solid 1px;">Código</td>
     <td style="width:260px;text-align:center;border:solid 1px;">Producto</td>

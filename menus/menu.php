@@ -74,7 +74,7 @@ function menu_1() {
             </li>
             <li><a href="" target="_parent"><i class="icon-print"></i> Reportes</a>
                 <ul>
-                    <li><a href="#">Productos</a>
+                    <li><a href="" target="_parent">Productos</a>
                         <ul>
                             <li><a href="" id="producto_general">Lista precios en general</a></li>
                             <li><a href="" id="producto_marca_categoria">Lista precios por Categorias y Marcas</a></li>
@@ -86,7 +86,6 @@ function menu_1() {
                    
                    <li><a href="" target="_parent"><i class="icon-shopping-cart"></i> Compras</a>
                         <ul>
-                            
                             <li><a href="">Resumen de compras locales</a>
                                <ul>
                                   <li><a href="" id="agrupados_proveedor">Agrupados por proveedor</a></li>
@@ -146,25 +145,17 @@ function menu_1() {
                             </li>
                         </ul>
                    </li>
-                  <li><a href="#">Proformas</a>
+                  <li><a href="" target="_parent">Proformas</a>
                         <ul>
                             <li><a href="" target="_parent" id="proformas">Proformas</a></li>
                             <li><a href="" id="lista_proformas">Lista de Proformas</a></li>
                         </ul>
                   </li> 
-                  <li><a href="#">Gastos</a>
+                  <li><a href="" target="_parent">Gastos</a>
                       <ul>
                         <li><a href="" id="gastos">Gastos por factura</a></li> 
                         <li><a href="" id="gastos_general">Gastos general</a></li>         
                         <li><a href="" id="gastos_internos">Gastos Internos Fechas</a></li>         
-                      </ul>
-                  </li> 
-
-                   <li><a href="#">Autorizaciones</a>
-                      <ul>
-                          <li><a href="" id="autorizaciones_cliente">Autorizaciones CLientes</a></li>
-                          <li><a href="" id="autorizaciones_cliente_fechas">Autorizaciones entre fechas</a></li>
-                          <li><a href="" id="autorizaciones_cliente_caducidad">Autorizaciones por caducar</a></li>
                       </ul>
                   </li> 
                 </ul>
@@ -233,9 +224,10 @@ function menu_2() {
                     <li><a href="../html/gastos.php" target="_blank">Gastos Internos</a></li>
                 </ul>
             </li>
+            
             <li><a href="" target="_parent"><i class="icon-print"></i> Reportes</a>
                 <ul>
-                    <li><a href="#">Productos</a>
+                    <li><a href="" target="_parent">Productos</a>
                         <ul>
                             <li><a href="" id="producto_general">Lista precios en general</a></li>
                             <li><a href="" id="producto_marca_categoria">Lista precios por Categorias y Marcas</a></li>
@@ -291,25 +283,17 @@ function menu_2() {
                             </li>
                         </ul>
                    </li>
-                  <li><a href="#">Proformas</a>
+                  <li><a href="" target="_parent">Proformas</a>
                         <ul>
                             <li><a href="" target="_parent" id="proformas">Proformas</a></li>
                             <li><a href="" id="lista_proformas">Lista de Proformas</a></li>
                         </ul>
                   </li> 
-                  <li><a href="#">Gastos</a>
+                  <li><a href="" target="_parent">Gastos</a>
                       <ul>
                         <li><a href="" id="gastos">Gastos por factura</a></li> 
                         <li><a href="" id="gastos_general">Gastos general</a></li>         
                         <li><a href="" id="gastos_internos">Gastos Internos Fechas</a></li>         
-                      </ul>
-                  </li> 
-
-                   <li><a href="#">Autorizaciones</a>
-                      <ul>
-                          <li><a href="" id="autorizaciones_cliente">Autorizaciones CLientes</a></li>
-                          <li><a href="" id="autorizaciones_cliente_fechas">Autorizaciones entre fechas</a></li>
-                          <li><a href="" id="autorizaciones_cliente_caducidad">Autorizaciones por caducar</a></li>
                       </ul>
                   </li> 
                 </ul>
