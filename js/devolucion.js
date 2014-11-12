@@ -946,8 +946,20 @@ function inicio() {
     $("#btnNuevo").click(function(e) {
         e.preventDefault();
     });
-     $("#btnImprimir").click(function (){        
-        window.open("../reportes/reportes/devolucion_compra.php?id="+$("#comprobante").val(),'_blank');
+     $("#btnImprimir").click(function (){ 
+         $.ajax({
+        type: "POST",
+        url: "../procesos/validacion.php",
+        data: "comprobante=" + $("#comprobante").val() + "&tabla=" + "devolucion_compra" + "&id_tabla=" + "id_devolucion_compra" + "&tipo=" + 1,
+        success: function(data) {
+            var val = data;
+            if(val != "") {
+                window.open("../reportes/reportes/devolucion_compra.php?id="+$("#comprobante").val(),'_blank');  
+            } else {
+              alertify.alert("Devolución no creada!!");
+            }   
+        }
+        }); 
     });
 
     $("#btncargar").on("click", abrirDialogo);

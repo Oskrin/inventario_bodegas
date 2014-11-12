@@ -111,6 +111,7 @@ function entrar() {
             $("#valor_pagado").focus();
             alertify.alert("Ingrese un valor");
         } else {
+            if(parseFloat($("#valor_pagado").val()) <= parseFloat($("#saldo2").val())) {
             $("#list").jqGrid("clearGridData", true);
             var filas = jQuery("#list").jqGrid("getRowData");
             var su = 0;
@@ -131,6 +132,9 @@ function entrar() {
                 $("#valor_pagado").val("");
                 $("#saldo2").val("");
             ///////////////////////////
+            }
+          } else{
+              alertify.alert("Error... Valor excedió al saldo");  
             }
         }
     }
@@ -390,6 +394,31 @@ function limpiar_cuenta(){
    location.reload(); 
 }
 
+function punto(e){
+ var key;
+if (window.event)
+{
+    key = e.keyCode;
+}
+else if (e.which)
+{
+    key = e.which;
+}
+
+if (key < 48 || key > 57)
+{
+    if (key === 46 || key === 8)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+return true;   
+}
+
 function inicio() {
 jQuery().UItoTop({ easingType: 'easeOutQuart' });
     //////////////para hora///////////
@@ -430,11 +459,23 @@ jQuery().UItoTop({ easingType: 'easeOutQuart' });
             temp2 = datos['valor_pagado'];    
             temp3 = datos['saldo'];                            
         }
-        if($("#tipo_pago").val()=="EXTERNA") {
-            window.open("../reportes/reportes/reporte_cxc.php?tipo_pago="+$("#tipo_pago").val()+"&id="+temp+"&comprobante="+$("#comprobante").val(),'_blank');
-        }else{
-            window.open("../reportes/reportes/reporte_cxc.php?tipo_pago="+$("#tipo_pago").val()+"&id="+temp+"&comprobante="+$("#comprobante").val()+"&temp2="+temp2+"&temp3="+temp3,'_blank');
-        }
+        $.ajax({
+        type: "POST",
+        url: "../procesos/validacion.php",
+        data: "comprobante=" + $("#comprobante").val() + "&tabla=" + "pagos_cobrar" + "&id_tabla=" + "id_cuentas_cobrar" + "&tipo=" + 1,
+        success: function(data) {
+            var val = data;
+            if(val != ""){
+               if($("#tipo_pago").val()=="EXTERNA") {
+                window.open("../reportes/reportes/reporte_cxc.php?tipo_pago="+$("#tipo_pago").val()+"&id="+temp+"&comprobante="+$("#comprobante").val(),'_blank');
+                }else{
+                    window.open("../reportes/reportes/reporte_cxc.php?tipo_pago="+$("#tipo_pago").val()+"&id="+temp+"&comprobante="+$("#comprobante").val()+"&temp2="+temp2+"&temp3="+temp3,'_blank');
+                }  
+            } else {
+              alertify.alert("Cuenta no creada!!");
+            }   
+          }
+        });  
     });
     
      $("#btnAtras").click(function(e) {
@@ -445,7 +486,6 @@ jQuery().UItoTop({ easingType: 'easeOutQuart' });
         e.preventDefault();
     });
     
-    $("#valor_pagado").on("keyup",comprobar2);
     $("#btnfacturas").on("click", cargar_facturas);
     $("#btnGuardar").on("click", guardar_pagos);
     $("#btnNuevo").on("click", limpiar_cuenta);
@@ -456,34 +496,12 @@ jQuery().UItoTop({ easingType: 'easeOutQuart' });
     $("#ruc_ci").on("keyup", limpiar_campo);
     $("#nombres_completos").on("keyup", limpiar_campo2);
     $("#buscar_facturas").dialog(dialogo);
-
-     $("#valor_pagado").keypress(function(e) {
-        var key;
-        if (window.event)
-        {
-            key = e.keyCode;
-        }
-        else if (e.which)
-        {
-            key = e.which;
-        }
-
-        if (key < 48 || key > 57)
-        {
-            if (key === 46 || key === 8)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        return true;
-    });
+    
+    //////////////para valor////////
+    $("#valor_pagado").on("keypress",punto);
     ////////////////////////////////
 
-    //////////////validaciones////////////
+         //////////////validaciones////////////
     $("#ruc_ci").on("keypress", enter);
     $("#valor_pagado").on("keypress", enter1);
 
@@ -882,16 +900,15 @@ jQuery("#list2").jqGrid('navButtonAdd', '#pager2', {caption: "Añadir",
           alertify.alert("Seleccione una Cuenta a pagar");
         }
     }
-});
-    
+});  
 }
 
-function comprobar2(){
-    if(parseFloat($("#valor_pagado").val())<= parseFloat($("#saldo2").val())){
-        
-    }else{
-        alert("Error.. el valor supero el saldo");
-        $("#valor_pagado").val("");
-        $("#valor_pagado").focus();
-    }
-}
+//function comprobar2(){
+////    if(parseFloat($("#valor_pagado").val())<= parseFloat($("#saldo2").val())){
+////     alertify.alert("ok");  
+////    }else{
+////        alert("Error.. el valor supero el saldo");
+////        $("#valor_pagado").val("");
+////        $("#valor_pagado").focus();
+////    }
+//}

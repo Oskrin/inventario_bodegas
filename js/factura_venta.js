@@ -28,7 +28,7 @@ function show() {
     var hours = Digital.getHours();
     var minutes = Digital.getMinutes();
     var seconds = Digital.getSeconds();
-    var dn = "AM";
+    var dn = "AM";    
     if (hours > 12) {
         dn = "PM";
         hours = hours - 12;
@@ -1539,24 +1539,17 @@ return patron.test(te);
 }
 
 function punto(e){
- var key;
-if (window.event)
-{
+var key;
+if (window.event) {
     key = e.keyCode;
-}
-else if (e.which)
-{
+} else if (e.which) {
     key = e.which;
 }
 
-if (key < 48 || key > 57)
-{
-    if (key === 46 || key === 8)
-    {
+if (key < 48 || key > 57) {
+    if (key === 46 || key === 8) {
         return true;
-    }
-    else
-    {
+    } else {
         return false;
     }
 }
@@ -1567,7 +1560,7 @@ function inicio() {
     jQuery().UItoTop({
         easingType: 'easeOutQuart'
     });
-    //jQuery.noConflict();
+
     //////////////para hora///////////
     show();
     ///////////////////
@@ -1616,9 +1609,20 @@ function inicio() {
     $("#btnModificar").click(function(e) {
         e.preventDefault();
     });
-    $("#btnImprimir").click(function (){        
-        window.open("../reportes_sistema/factura_venta_epson.php?id="+$("#comprobante").val(),'_blank');
-        //window.open("../reportes_sistema/factura_venta.php?hoja=A4&id="+$("#comprobante").val(),'_blank');
+    $("#btnImprimir").click(function (){  
+     $.ajax({
+        type: "POST",
+        url: "../procesos/validacion.php",
+        data: "comprobante=" + $("#comprobante").val() + "&tabla=" + "factura_venta" + "&id_tabla=" + "id_factura_venta" + "&tipo=" + 1,
+        success: function(data) {
+            var val = data;
+            if(val != "") {
+               window.open("../reportes_sistema/factura_venta_epson.php?id="+$("#comprobante").val(),'_blank'); 
+            } else {
+              alertify.alert("Factura no creada!!");
+            }   
+        }
+        });
     });
     $("#btnNuevo").click(function(e) {
         e.preventDefault();
@@ -1701,6 +1705,8 @@ function inicio() {
     
      //////////////para precio////////
     $("#p_venta").on("keypress",punto);
+    $("#precio").on("keypress",punto);
+    $("#adelanto").on("keypress",punto);
     ////////////////////////////////
       
      //////////////////buscar productos codigo////////////////
@@ -1953,8 +1959,6 @@ function inicio() {
     };
     ////////////////////////////////////////////////
 
-    ///////////////////////////////////////////////
-    //
     /////valores meses desglose////////////////////
     $("#meses").spinner({
         min: 1, 
@@ -1975,53 +1979,6 @@ function inicio() {
     $("#meses").attr("disabled", "disabled");
     $("#cuotas").attr("disabled", "disabled");
     /////////////////////////////////
-
-    //////////////para precio////////
-    $("#precio").keypress(function(e) {
-        var key;
-        if (window.event) {
-            key = e.keyCode;
-        } else if (e.which) {
-            key = e.which;
-        }
-
-        if (key < 48 || key > 57) {
-            if (key === 46 || key === 8) {
-                return true;
-            } else {
-                return false;
-            }
-        }
-        return true;
-    });
-    ////////////////////////////////
-
-    ///////////adelanto//////////////
-    $("#adelanto").keypress(function(e) {
-        var key;
-        if (window.event)
-        {
-            key = e.keyCode;
-        }
-        else if (e.which)
-        {
-            key = e.which;
-        }
-
-        if (key < 48 || key > 57)
-        {
-            if (key === 46 || key === 8)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        return true;
-    });
-    //////////////////////////////
 
     $('.ui-spinner-button').click(function() {
         $(this).siblings('input').change();

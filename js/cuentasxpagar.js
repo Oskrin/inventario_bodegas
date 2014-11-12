@@ -112,6 +112,7 @@ function entrar() {
             $("#valor_pagado").focus();
             alertify.alert("Ingrese un valor");
         } else {
+            if(parseFloat($("#valor_pagado").val()) <= parseFloat($("#saldo2").val())) {
             $("#list").jqGrid("clearGridData", true);
             var filas = jQuery("#list").jqGrid("getRowData");
             var su = 0;
@@ -132,6 +133,9 @@ function entrar() {
                 $("#valor_pagado").val("");
                 $("#saldo2").val("");
             ///////////////////////////
+            }
+            } else{
+              alertify.alert("Error... Valor excedió al saldo");  
             }
         }
     }
@@ -372,6 +376,31 @@ function limpiar_cuenta(){
    location.reload(); 
 }
 
+function punto(e){
+ var key;
+if (window.event)
+{
+    key = e.keyCode;
+}
+else if (e.which)
+{
+    key = e.which;
+}
+
+if (key < 48 || key > 57)
+{
+    if (key === 46 || key === 8)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+return true;   
+}
+
 function inicio() {
 jQuery().UItoTop({ easingType: 'easeOutQuart' });
     //////////////para hora///////////
@@ -411,11 +440,23 @@ jQuery().UItoTop({ easingType: 'easeOutQuart' });
             temp2 = datos['valor_pagado'];    
             temp3 = datos['saldo'];                            
         }
-        if($("#tipo_pago").val()=="EXTERNA") {            
+        $.ajax({
+        type: "POST",
+        url: "../procesos/validacion.php",
+        data: "comprobante=" + $("#comprobante").val() + "&tabla=" + "pagos_pagar" + "&id_tabla=" + "id_cuentas_pagar" + "&tipo=" + 1,
+        success: function(data) {
+            var val = data;
+            if(val != ""){
+            if($("#tipo_pago").val()=="EXTERNA") {            
             window.open("../reportes/reportes/reporte_cxp.php?tipo_pago="+$("#tipo_pago").val()+"&id="+temp+"&comprobante="+$("#comprobante").val()+"&proveedor="+$("#id_proveedor").val(),'_blank');
-        }else{
+            }else{
             window.open("../reportes/reportes/reporte_cxp.php?tipo_pago="+$("#tipo_pago").val()+"&id="+temp+"&comprobante="+$("#comprobante").val()+"&temp2="+temp2+"&temp3="+temp3+"&proveedor="+$("#id_proveedor").val(),'_blank');
-        }
+            } 
+            } else {
+              alertify.alert("Cuenta no creada!!");
+            }   
+          }
+        }); 
     });
     
      $("#btnAtras").click(function(e) {
@@ -431,7 +472,6 @@ jQuery().UItoTop({ easingType: 'easeOutQuart' });
     $("#empresa").attr("disabled", "disabled");
     /////////////////////////////////
     
-    $("#valor_pagado").on("keyup",comprobar2);
     $("#btnfacturas").on("click", cargar_facturas);
     $("#btnGuardar").on("click", guardar_pagos);
     $("#btnNuevo").on("click", limpiar_cuenta);
@@ -442,31 +482,9 @@ jQuery().UItoTop({ easingType: 'easeOutQuart' });
     $("#ruc_ci").on("keyup", limpiar_campo);
     $("#buscar_facturas").dialog(dialogo);
     $("#buscar_cuentas_pagar").dialog(dialogo3);
-
-     $("#valor_pagado").keypress(function(e) {
-        var key;
-        if (window.event)
-        {
-            key = e.keyCode;
-        }
-        else if (e.which)
-        {
-            key = e.which;
-        }
-
-        if (key < 48 || key > 57)
-        {
-            if (key === 46 || key === 8)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        return true;
-    });
+    
+    //////////////para valor////////
+    $("#valor_pagado").on("keypress",punto);
     ////////////////////////////////
 
     //////////////validaciones////////////
@@ -880,12 +898,12 @@ jQuery("#list2").jqGrid('navButtonAdd', '#pager2', {caption: "Añadir",
 
 }
 
-function comprobar2(){
-    if(parseFloat($("#valor_pagado").val())<= parseFloat($("#saldo2").val())){
-        
-    }else{
-        alert("Error.. el valor supero el saldo");
-        $("#valor_pagado").val("");
-        $("#valor_pagado").focus();
-    }
-}
+//function comprobar2(){
+//    if(parseFloat($("#valor_pagado").val())<= parseFloat($("#saldo2").val())){
+//        
+//    }else{
+//        alert("Error.. el valor supero el saldo");
+//        $("#valor_pagado").val("");
+//        $("#valor_pagado").focus();
+//    }
+//}

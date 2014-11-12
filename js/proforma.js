@@ -661,7 +661,19 @@ function inicio() {
         e.preventDefault();
     });
      $("#btnImprimir").click(function (){
-        window.open("../reportes/reportes/proforma.php?id="+$("#comprobante").val(),'_blank');        
+       $.ajax({
+        type: "POST",
+        url: "../procesos/validacion.php",
+        data: "comprobante=" + $("#comprobante").val() + "&tabla=" + "proforma" + "&id_tabla=" + "id_proforma" + "&tipo=" + 1,
+        success: function(data) {
+            var val = data;
+            if(val != "") {
+                window.open("../reportes/reportes/proforma.php?id="+$("#comprobante").val(),'_blank');  
+            } else {
+              alertify.alert("Proforma no creada!!");
+            }   
+        }
+        });        
     });
     $("#btnAtras").click(function(e) {
         e.preventDefault();

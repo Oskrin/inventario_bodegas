@@ -749,6 +749,23 @@ function limpiar_campo4(){
     }
 }
 
+function punto(e){
+var key;
+if (window.event) {
+    key = e.keyCode;
+} else if (e.which) {
+    key = e.which;
+}
+
+if (key < 48 || key > 57) {
+    if (key === 46 || key === 8) {
+        return true;
+    } else {
+        return false;
+    }
+}
+return true;   
+}
 
 function inicio() {
     jQuery().UItoTop({ easingType: 'easeOutQuart' });
@@ -783,12 +800,21 @@ function inicio() {
         e.preventDefault();
     });
     $("#btnImprimir").click(function (e){
-        window.open("../reportes/reportes/notaCredito.php?id="+$("#comprobante").val());  
-    })
+        $.ajax({
+        type: "POST",
+        url: "../procesos/validacion.php",
+        data: "comprobante=" + $("#comprobante").val() + "&tabla=" + "devolucion_venta" + "&id_tabla=" + "id_devolucion_venta" + "&tipo=" + 1,
+        success: function(data) {
+            var val = data;
+            if(val != "") {
+                window.open("../reportes/reportes/notaCredito.php?id="+$("#comprobante").val());  
+            } else {
+              alertify.alert("Nota de Crédito no creada!!");
+            }   
+          }
+        }); 
+    });
 
-
-//    $("#btncargar").on("click", abrirDialogo);
-    
     $("#btnAgregar").on("click", agregar);
     $("#btnGuardarSeries").on("click", guardar_serie);
     $("#btnGuardar").on("click", guardar_devolucion);
@@ -839,32 +865,8 @@ function inicio() {
     /////////////////////////////////
 
     //////////////para precio////////
-    $("#precio").keypress(function(e) {
-        var key;
-        if (window.event)
-        {
-            key = e.keyCode;
-        }
-        else if (e.which)
-        {
-            key = e.which;
-        }
-
-        if (key < 48 || key > 57)
-        {
-            if (key === 46 || key === 8)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        return true;
-    });
-
-    ////////////////////////////////
+    $("#precio").on("keypress",punto);
+   ////////////////////////////////
 
     ///////////////////buscar cliente/////////////////////
     $("#tipo_docu").change(function() {
@@ -1113,8 +1115,6 @@ function inicio() {
                 .append("<a>" + item.value + "</a>")
                 .appendTo(ul);
             };
-
-        //////////////////////////////
         }
     });
     //////////////////////////////////////////////////

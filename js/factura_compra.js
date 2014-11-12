@@ -963,7 +963,19 @@ function inicio() {
     });
     
     $("#btnImprimir").click(function (){
-        window.open("../reportes/reportes/factura_compra.php?hoja=A4&id="+$("#comprobante").val(),'_blank');
+        $.ajax({
+        type: "POST",
+        url: "../procesos/validacion.php",
+        data: "comprobante=" + $("#comprobante").val() + "&tabla=" + "factura_compra" + "&id_tabla=" + "id_factura_compra" + "&tipo=" + 1,
+        success: function(data) {
+            var val = data;
+            if(val != "") {
+                window.open("../reportes/reportes/factura_compra.php?hoja=A4&id="+$("#comprobante").val(),'_blank');  
+            } else {
+              alertify.alert("Factura no creada!!");
+            }   
+        }
+        });
     });
 
     $("#btncargar").on("click", abrirDialogo);
