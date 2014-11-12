@@ -266,6 +266,24 @@ function limpiar_cuenta(){
     location.reload(); 
 }
 
+function punto(e){
+ var key;
+if (window.event) {
+    key = e.keyCode;
+} else if (e.which) {
+    key = e.which;
+}
+
+if (key < 48 || key > 57) {
+    if (key === 46 || key === 8) {
+        return true;
+    } else {
+        return false;
+    }
+}
+return true;   
+}
+
 function inicio() {
 
     //////////////para hora///////////
@@ -293,10 +311,7 @@ function inicio() {
     $("#btnNuevo").on("click", limpiar_cuenta);
     $("#btnAtras").on("click", flecha_atras);
     $("#btnAdelante").on("click", flecha_siguiente);
-    
-    //$("#btnBuscar").on("click", abrirDialogo);
-    //$("#prod").dialog(dialogos);
-    
+
     /////////////////////////// 
     $("#buscar_cartera_cobrar").dialog(dialogo2);
     $("#btnBuscar").click(function(e) {
@@ -305,8 +320,6 @@ function inicio() {
     });
     /////////////////////////// 
     
-    
-    ///////////////////////////////////
     //////////////validaciones////////////
     $("#ruc_ci").on("keyup", limpiar_campo);
     $("#nombres_completos").on("keyup", limpiar_campo2);
@@ -316,59 +329,9 @@ function inicio() {
     //////////////////////////////////////
     
      $("#num_factura").attr("maxlength", "20");
-     $("#num_factura").keypress(function(e) {
-        var key;
-        if (window.event)
-        {
-            key = e.keyCode;
-        }
-        
-        else if (e.which)
-        {
-            key = e.which;
-        }
-
-        if (key < 48 || key > 57)
-        {
-            if (key === 45 || key === 8)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        return true;
-    });
-    
-    //////////////para total////////
-    $("#total").keypress(function(e) {
-        var key;
-        if (window.event)
-        {
-            key = e.keyCode;
-        }
-        
-        else if (e.which)
-        {
-            key = e.which;
-        }
-
-        if (key < 48 || key > 57)
-        {
-            if (key === 46 || key === 8)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        return true;
-    });
-
+     
+     //////////////para total////////
+    $("#total").on("keypress",punto);
     ////////////////////////////////
     
     /////buscador cliente identificacion///// 
@@ -432,89 +395,12 @@ function inicio() {
         datatype: 'xml',
         colNames: ['ID','IDENTIFICACIÓN','CLIENTE', 'FACTURA NRO.','MONTO TOTAL','FECHA'],
         colModel: [
-        {
-            name: 'id_c_cobrarexternas', 
-            index: 'id_c_cobrarexternas', 
-            editable: false, 
-            search: false, 
-            hidden: false, 
-            editrules: {
-                edithidden: false
-            }, 
-            align: 'center',
-            frozen: true, 
-            width: 50
-        },
-
-        {
-            name: 'identificacion', 
-            index: 'identificacion', 
-            editable: false, 
-            search: true, 
-            hidden: false, 
-            editrules: {
-                edithidden: false
-            }, 
-            align: 'center',
-            frozen: true, 
-            width: 150
-        },
-
-        {
-            name: 'nombres_cli', 
-            index: 'nombres_cli', 
-            editable: true, 
-            search: true, 
-            hidden: false, 
-            editrules: {
-                edithidden: false
-            }, 
-            align: 'center',
-            frozen: true, 
-            width: 200
-        },
-
-        {
-            name: 'num_factura', 
-            index: 'num_factura', 
-            editable: true, 
-            search: true, 
-            hidden: false, 
-            editrules: {
-                edithidden: false
-            }, 
-            align: 'center',
-            frozen: true, 
-            width: 200
-        },
-
-        {
-            name: 'total', 
-            index: 'total', 
-            editable: true, 
-            search: false, 
-            hidden: false, 
-            editrules: {
-                edithidden: false
-            }, 
-            align: 'center',
-            frozen: true, 
-            width: 100
-        },
-
-        {
-            name: 'fecha_nota', 
-            index: 'fecha_nota', 
-            editable: true, 
-            search: false, 
-            hidden: false, 
-            editrules: {
-                edithidden: false
-            }, 
-            align: 'center',
-            frozen: true, 
-            width: 100
-        },
+           {name: 'id_c_cobrarexternas', index: 'id_c_cobrarexternas', editable: false, search: false, hidden: false, editrules: {edithidden: false}, align: 'center', frozen: true, width: 50},
+           {name: 'identificacion', index: 'identificacion', editable: false, search: true, hidden: false, editrules: {edithidden: false}, align: 'center', frozen: true, width: 150},
+           {name: 'nombres_cli', index: 'nombres_cli', editable: true, search: true, hidden: false, editrules: {edithidden: false}, align: 'center', frozen: true, width: 200},
+           {name: 'num_factura', index: 'num_factura', editable: true, search: true, hidden: false, editrules: {edithidden: false}, align: 'center', frozen: true, width: 200},
+           {name: 'total', index: 'total', editable: true, search: false, hidden: false, editrules: {edithidden: false}, align: 'center', frozen: true, width: 100},
+           {name: 'fecha_nota', index: 'fecha_nota', editable: true, search: false, hidden: false, editrules: {edithidden: false}, align: 'center', frozen: true, width: 100},
         ],
         rowNum: 30,
         width: 750,
@@ -533,7 +419,7 @@ function inicio() {
                 var ret = jQuery("#list2").jqGrid('getRowData', id);
                 var valor = ret.id_c_cobrarexternas;
                 /////////////agregregar cuentas cobrar////////
-                $("#comprobante").val(ret.id_c_cobrarexternas);
+                $("#comprobante").val(valor);
                 $("#btnGuardar").attr("disabled", true);
                 $("#btnModificar").attr("disabled", true);
                 $("#ruc_ci").attr("disabled", "disabled");
@@ -614,7 +500,7 @@ function inicio() {
                 var ret = jQuery("#list2").jqGrid('getRowData', id);
                 var valor = ret.id_c_cobrarexternas;
                 /////////////agregregar cuentas cobrar////////
-                $("#comprobante").val(ret.id_c_cobrarexternas);
+                $("#comprobante").val(valor);
                 $("#btnGuardar").attr("disabled", true);
                 $("#btnModificar").attr("disabled", true);
                 $("#ruc_ci").attr("disabled", "disabled");

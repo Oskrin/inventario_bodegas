@@ -314,6 +314,24 @@ function limpiar_cuenta(){
     location.reload(); 
 }
 
+function punto(e){
+var key;
+if (window.event) {
+    key = e.keyCode;
+} else if (e.which) {
+    key = e.which;
+}
+
+if (key < 48 || key > 57) {
+    if (key === 46 || key === 8)     {
+        return true;
+    } else {
+        return false;
+    }
+}
+return true;   
+}
+
 function inicio() {
     //////////////para hora///////////
     show();
@@ -361,10 +379,7 @@ function inicio() {
     });
     /////////////////////////// 
 
-
     ////////////////eventos////////////////////
-    //$("input[type=text]").on("keyup", enter);
-
     $("#ruc_ci").on("keypress", enter);
     $("#empresa").on("keypress", enter);
     $("#serie1").on("keypress", enter);
@@ -383,32 +398,9 @@ function inicio() {
         dateFormat: 'yy-mm-dd'
     });
     
-    ///////////total//////////////
-    $("#total").keypress(function(e) {
-        var key;
-        if (window.event)
-        {
-            key = e.keyCode;
-        }
-        else if (e.which)
-        {
-            key = e.which;
-        }
-
-        if (key < 48 || key > 57)
-        {
-            if (key === 46 || key === 8)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        return true;
-    });
-    //////////////////////////////
+    //////////////para total////////
+    $("#total").on("keypress",punto);
+    ////////////////////////////////
 
     //////////////buscar proveedor///////////////////
     $("#tipo_docu").change(function() {
@@ -541,10 +533,9 @@ function inicio() {
         
         if (id) {
             var ret = jQuery("#list2").jqGrid('getRowData', id);
-             //alert(ret.id_factura_venta);
             var valor = ret.id_c_pagarexternas;
             /////////////agregregar datos factura////////
-            $("#comprobante").val(ret.id_c_pagarexternas);
+            $("#comprobante").val(valor);
             $("#btnGuardar").attr("disabled", true);
             $("#btnModificar").attr("disabled", true);
             $("#ruc_ci").attr("disabled", "disabled");
@@ -627,7 +618,7 @@ function inicio() {
 
             var valor = ret.id_c_pagarexternas;
             /////////////agregregar datos factura////////
-            $("#comprobante").val(ret.id_c_pagarexternas);
+            $("#comprobante").val(valor);
             $("#btnGuardar").attr("disabled", true);
             $("#btnModificar").attr("disabled", true);
             $("#ruc_ci").attr("disabled", "disabled");
