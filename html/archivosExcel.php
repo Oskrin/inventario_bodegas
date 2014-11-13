@@ -7,7 +7,7 @@ if (empty($_SESSION['id'])) {
 include '../menus/menu.php';
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
     <head>
         <meta charset="utf-8">
         <title>.:ARCHIVOS DE EXCEL:.</title>

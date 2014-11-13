@@ -19,7 +19,7 @@ $cont1++;
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
     <head>
         <meta charset="utf-8">
         <title>.:CXP EXTERNA:.</title>

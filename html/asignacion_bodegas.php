@@ -17,7 +17,7 @@ while ($row = pg_fetch_row($consulta2)) {
 $cont1++;
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
     <head>
         <meta charset="utf-8">
         <title>.:MOVIMIENTOS:.</title>
