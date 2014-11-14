@@ -74,8 +74,7 @@ session_destroy();
                         <div class="member-data">
                             <h3>P&S Systems</h3>
                             <div class="position">Desarrollo de Software</div>
-                        </div>
-                        
+                        </div> 
                     </li>
                 </ul>
             </div>

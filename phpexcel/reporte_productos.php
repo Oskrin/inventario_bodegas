@@ -56,17 +56,14 @@ $objPHPExcel->getActiveSheet()->getColumnDimension('C')->setWidth(20);
 $objPHPExcel->getActiveSheet()->getColumnDimension('D')->setWidth(20);
 $objPHPExcel->getActiveSheet()->getColumnDimension('E')->setWidth(20);
 
-
-
-
 //CABECERA DE LA CONSULTA
 $y = 6;
 $objPHPExcel->setActiveSheetIndex(0)
-->setCellValue("B".$y, 'Código')
-->setCellValue("C".$y, 'Atículo')
-->setCellValue("D".$y, 'Precio Minorista')
-->setCellValue("E".$y, 'Precio Mayorista')
-->setCellValue("F".$y, 'Stock');
+->setCellValue("B".$y, 'CÓDIGO')
+->setCellValue("C".$y, 'PRODUCTO')
+->setCellValue("D".$y, 'PRECIO')
+->setCellValue("E".$y, 'STOCK')
+->setCellValue("F".$y, 'CATEGORIA');
 
 
 $objPHPExcel->getActiveSheet()
@@ -109,7 +106,7 @@ $objPHPExcel->getActiveSheet()
             ->setSize(20);
 //////////////////////////
 $objPHPExcel->setActiveSheetIndex(0)
-            ->setCellValue("B4", 'Empresa:P&S Systems');
+            ->setCellValue("B4", 'Empresa: Alizon Online');
 $objPHPExcel->setActiveSheetIndex(0)
             ->mergeCells('B4:C4');
 
@@ -121,7 +118,7 @@ $objPHPExcel->getActiveSheet()
             ->setSize(12);   
 //////////////////////////
 $objPHPExcel->setActiveSheetIndex(0)
-            ->setCellValue("D4", 'Propietario:Santiago Yepez');
+            ->setCellValue("D4", 'Propietario: Juan Pablo Guerra');
 $objPHPExcel->setActiveSheetIndex(0)
             ->mergeCells('D4:E4');
 
@@ -135,25 +132,25 @@ $objPHPExcel->getActiveSheet()
 $objDrawing = new PHPExcel_Worksheet_Drawing();
 $objDrawing->setName('PHPExcel logo');
 $objDrawing->setDescription('PHPExcel logo');
-$objDrawing->setPath('../images/logo_empresa.jpg');       // filesystem reference for the image file
+$objDrawing->setPath('../images/icono.jpg');       // filesystem reference for the image file
 $objDrawing->setHeight(70);                 // sets the image height to 36px (overriding the actual image height); 
 $objDrawing->setCoordinates('F2');    // pins the top-left corner of the image to cell D24
 $objDrawing->setOffsetX(0);                // pins the top left corner of the image at an offset of 10 points horizontally to the right of the top-left corner of the cell
 $objDrawing->setWorksheet($objPHPExcel->getActiveSheet());     
 //DETALLE DE LA CONSULTA
-$sql=pg_query("select codigo,articulo,iva_minorista,iva_mayorista,stock from productos");
+$sql=pg_query("select codigo, articulo, iva_minorista, stock, categoria from productos");
 while($row=pg_fetch_row($sql))       
 {
     $y++;
     //BORDE DE LA CELDA
-		$objPHPExcel->setActiveSheetIndex(0)
+    $objPHPExcel->setActiveSheetIndex(0)
     ->getStyle('B'.$y.":F".$y)
     ->applyFromArray($borders);
 
     //MOSTRAMOS LOS VALORES
     $objPHPExcel->setActiveSheetIndex(0)
-		->setCellValue("B".$y, ' '.$row[0])
-		->setCellValue("C".$y, $row[1])
+    ->setCellValue("B".$y, ' '.$row[0])
+    ->setCellValue("C".$y, $row[1])
     ->setCellValue("D".$y, $row[2])
     ->setCellValue("E".$y, $row[3])
     ->setCellValue("F".$y, $row[4]);    

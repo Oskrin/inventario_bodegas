@@ -13,23 +13,13 @@ function menu_1() {
                     <li><a href="../html/usuarios.php" target="_blank">Usuarios</a></li>
                     <li><a href="../html/clientes.php" target="_blank">Clientes</a></li>
                     <li><a href="../html/proveedores.php"target="_blank">Proveedores</a></li>
-                    <li><a href="">Productos</a>
-                        <ul>
-                            <li><a href="" target="_parent">Clasificación</a>
-                            <ul>
-                                  <li><a href="../html/categorias.php" target="_blank">Categorias</a></li>
-                                  <li><a href="../html/marcas.php" target="_blank">Marcas</a></li>
-                                  <li><a href="../html/colores.php" target="_blank"">Colores</a></li>
-                            </ul>
-                            </li>
-                            <li><a href="" target="_parent">Ingreso Productos</a>
-                            <ul>
-                                  <li><a href="../html/productos.php" target="_blank">Bienes</a></li>
-                            </ul>
-                           </li>
-                        </ul>
+                    <li><a href="../html/productos.php"target="_blank">Productos</a></li>
+                    <li><a href="" target="_parent">Clasificación</a>
+                    <ul>
+                        <li><a href="../html/categorias.php" target="_blank">Categorias</a></li>
+                        <li><a href="../html/marcas.php" target="_blank">Marcas</a></li>
+                    </ul>
                     </li>
-                   
                 </ul>
             </li>
             
@@ -72,6 +62,7 @@ function menu_1() {
                     <li><a href="../html/gastos.php" target="_blank">Gastos Internos</a></li>
                 </ul>
             </li>
+            
             <li><a href="" target="_parent"><i class="icon-print"></i> Reportes</a>
                 <ul>
                     <li><a href="" target="_parent">Productos</a>
@@ -167,6 +158,7 @@ function menu_1() {
                     <li><a href="../html/index.php">Salir</a></li>
                 </ul>
             </li>
+            
             <li><a href="" target="_parent"><i class="icon-warning-sign"></i> Ayuda</a>
                 <ul class="mega-menu">
                     <li>

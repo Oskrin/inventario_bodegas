@@ -55,7 +55,7 @@ $objPHPExcel->getActiveSheet()
             ->setSize(18);
 //////////////////////////
 $objPHPExcel->setActiveSheetIndex(0)
-            ->setCellValue("B4", 'Empresa:P&S Systems');
+            ->setCellValue("B4", 'Empresa: Alizon Online');
 $objPHPExcel->setActiveSheetIndex(0)
             ->mergeCells('B4:C4');
 
@@ -67,7 +67,7 @@ $objPHPExcel->getActiveSheet()
             ->setSize(10);   
 //////////////////////////
 $objPHPExcel->setActiveSheetIndex(0)
-            ->setCellValue("D4", 'Propietario:Santiago Yepez');
+            ->setCellValue("D4", 'Propietario: Juan Pablo Guerra');
 $objPHPExcel->setActiveSheetIndex(0)
             ->mergeCells('D4:E4');
 
@@ -129,7 +129,7 @@ $objPHPExcel->getActiveSheet()
 $objDrawing = new PHPExcel_Worksheet_Drawing();
 $objDrawing->setName('PHPExcel logo');
 $objDrawing->setDescription('PHPExcel logo');
-$objDrawing->setPath('../images/logo_empresa.jpg');       // 
+$objDrawing->setPath('../images/icono.jpg');       // 
 $objDrawing->setWidth(160);                 // sets the image 
 $objDrawing->setHeight(60);
 $objDrawing->setCoordinates('L2');    // pins the top-left corner 
