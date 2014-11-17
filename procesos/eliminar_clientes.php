@@ -6,7 +6,7 @@ conectarse();
 error_reporting(0);
 
 /////////////////eliminar clientes////////////////////
-pg_query("delete  from clientes where id_cliente='$_POST[id_cliente]'");
+pg_query("Update clientes Set estado='Pasivo' where id_cliente='$_POST[id_cliente]'");
 //////////////////////////////////////////////////////
 
 $data = 1;

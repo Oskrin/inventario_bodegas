@@ -1,7 +1,188 @@
 <?php
-
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+session_start();
+if (empty($_SESSION['id'])) {
+    header('Location: index.php');
+}
+include '../menus/menu.php';
+include '../procesos/base.php';
+conectarse();
+error_reporting(0);
 ?>
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>.:CONFIGURACIÓN:.</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes"> 
+        <link rel="stylesheet" type="text/css" href="../css/buttons.css"/>
+        <link rel="stylesheet" type="text/css" href="../css/jquery-ui-1.10.4.custom.css"/>    
+        <link rel="stylesheet" type="text/css" href="../css/normalize.css"/>    
+        <link rel="stylesheet" type="text/css" href="../css/ui.jqgrid.css"/> 
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/bootstrap-responsive.min.css" rel="stylesheet">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet">
+        <link href="../css/font-awesome.css" rel="stylesheet">
+        <link href="../css/style.css" rel="stylesheet">
+        <link href="../css/link_top.css" rel="stylesheet" />
+        <link rel="stylesheet" href="../css/alertify.core.css" />
+        <link rel="stylesheet" href="../css/alertify.default.css" id="toggleCSS" />
+        <link href="../css/sm-core-css.css" rel="stylesheet" type="text/css" />
+        <link href="../css/sm-blue/sm-blue.css" rel="stylesheet" type="text/css" />
+
+        <script type="text/javascript" src="../js/bootstrap.js"></script>
+        <script type="text/javascript" src="../js/jquery-loader.js"></script>
+        <script type="text/javascript" src="../js/jquery-1.10.2.js"></script>
+        <script type="text/javascript" src="../js/jquery-ui-1.10.4.custom.min.js"></script>
+        <script type="text/javascript" src="../js/grid.locale-es.js"></script>
+        <script type="text/javascript" src="../js/jquery.jqGrid.src.js"></script>
+        <script type="text/javascript" src="../js/buttons.js" ></script>
+        <script type="text/javascript" src="../js/validCampoFranz.js" ></script>
+        <script type="text/javascript" src="../js/configuracion.js"></script>
+        <script type="text/javascript" src="../js/datosUser.js"></script>
+        <script type="text/javascript" src="../js/ventana_reporte.js"></script>
+        <script type="text/javascript" src="../js/guidely/guidely.min.js"></script>
+        <script type="text/javascript" src="../js/easing.js" ></script>
+        <script type="text/javascript" src="../js/jquery.ui.totop.js" ></script>
+        <script type="text/javascript" src="../js/jquery.smartmenus.js"></script>
+        <script type="text/javascript" src="../js/alertify.min.js"></script>
+    </head>
+
+    <body>
+        <div class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+
+                    <a class="brand" href="">
+                        <h1><?php echo $_SESSION['empresa']; ?></h1>				
+                    </a>
+                </div>
+            </div>
+        </div> 
+
+        <!-- /Inicio  Menu Principal -->
+        <div class="subnavbar">
+            <div class="subnavbar-inner">
+                <?Php
+                // Cabecera Menu 
+                if ($_SESSION['cargo'] == '1') {
+                    print menu_1();
+                }
+                if ($_SESSION['cargo'] == '2') {
+                    print menu_2();
+                }
+                if ($_SESSION['cargo'] == '3') {
+                    print menu_3();
+                }
+                ?> 
+            </div> 
+        </div> 
+        <!-- /Fin  Menu Principal -->
+
+        <div class="main">
+            <div class="main-inner">
+                <div class="container">
+                    <div class="row">
+                        <div class="span12">      		
+                            <div class="widget ">
+                                <div class="widget-header">
+                                    <i class="icon-file"></i>
+                                    <h3>CONFIGURACIÓN</h3>
+                                </div> <!-- /widget-header -->
+
+                                <div class="widget-content">
+                                    <div class="tabbable">
+                                        <div class="widget-content">
+                                            <div class="widget big-stats-container">
+                                                <div class="widget-content">
+                                                    <div class="alert alert-success" >
+                                                        Configuración del Usuario
+                                                    </div> 
+                                                    <form class="form-horizontal" id="configuracion_form" name="configuracion_form" method="post">
+                                                        <fieldset>
+                                                            <section class="columna1">
+                                                                <div class="control-group">											
+                                                                    <label class="control-label" for="ci_usuario">C.I. Usuario:</label>
+                                                                    <div class="controls">
+                                                                        <input type="text" name="ci_usuario" id="ci_usuario" class="campo" readonly />
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                                <div class="control-group">											
+                                                                    <label class="control-label" for="nombre_usuario">Nombres Usuario:</label>
+                                                                    <div class="controls">
+                                                                        <input type="text" name="nombre_usuario" id="nombre_usuario" class="campo"  readonly/>
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                                <div class="control-group">											
+                                                                    <label class="control-label" for="apellido_usuario">Apellidos Usuario:</label>
+                                                                    <div class="controls">
+                                                                        <input type="text" name="apellido_usuario" id="apellido_usuario" class="campo"  readonly/>
+                                                                        <input type="hidden" name="id_usuario" id="id_usuario" class="campo"  readonly/>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="control-group">											
+                                                                    <label class="control-label" for="contra_nueva">Contraseña Nueva:</label>
+                                                                    <div class="controls">
+                                                                        <input type="password" name="contra_nueva" id="contra_nueva" class="campo" />
+                                                                    </div>
+                                                                </div>  
+
+                                                                <div class="control-group">											
+                                                                    <label class="control-label" for="verificar_nueva">Vuelva a escribir contraseña nueva:</label>
+                                                                    <div class="controls">
+                                                                        <input type="password" name="verificar_nueva" id="verificar_nueva" class="campo" />
+                                                                    </div>
+                                                                </div> 
+                                                            </section> 
+                                                        </fieldset>
+                                                    </form>
+
+                                                    <div class="form-actions">
+                                                        <button class="btn btn-primary" id='btnGuardar'><i class="icon-save"></i> Guardar cambios</button>
+                                                        <button class="btn btn-primary" id='btnBuscar'><i class="icon-search"></i> Buscar</button>
+                                                        <button class="btn btn-primary" id='btnNuevo'><i class="icon-pencil"></i> Nuevo</button>
+
+                                                    </div>
+
+                                                    <div id="usuarios" title="Búsqueda Usuarios" class="">
+                                                        <table id="list"><tr><td></td></tr></table>
+                                                        <div id="pager"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> 
+                            </div>
+                        </div> 
+                    </div> 
+                </div> 
+            </div> 
+        </div> 
+
+        <script type="text/javascript" src="../js/base.js"></script>
+        <script type="text/javascript" src="../js/jquery.ui.datepicker-es.js"></script>
+
+        <div class="footer">
+            <div class="footer-inner">
+                <div class="container">
+                    <div class="row">
+                        <div class="span12">
+                            &copy; 2014 <a href=""> <?php echo $_SESSION['empresa']; ?></a>.
+                        </div>
+                    </div>
+                </div>
+            </div> 
+        </div>
+    </body>
+</html>
+

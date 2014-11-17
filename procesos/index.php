@@ -6,7 +6,9 @@ conectarse();
 $data = "";
 $cont = 0;
 
-$consulta = pg_query("select * from usuario where usuario='$_POST[usuario]' and clave='$_POST[clave]'");
+$contrasena = md5($_POST['clave']);
+
+$consulta = pg_query("select * from usuario where usuario='$_POST[usuario]' and clave='$contrasena'");
 while ($row = pg_fetch_row($consulta)) {
     $cont = 1;
     $_SESSION['id'] = $row[0];

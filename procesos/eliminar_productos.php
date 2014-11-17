@@ -5,8 +5,8 @@ include 'base.php';
 conectarse();
 error_reporting(0);
 
-/////////////////eliminar clientes////////////////////
-pg_query("delete  from productos where cod_productos='$_POST[cod_productos]'");
+/////////////////eliminar productos////////////////////
+pg_query("Update productos Set estado='Pasivo' where cod_productos='$_POST[cod_productos]'");
 //////////////////////////////////////////////////////
 
 $data = 1;

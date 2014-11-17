@@ -5,8 +5,8 @@ include 'base.php';
 conectarse();
 error_reporting(0);
 
-/////////////////eliminar clientes////////////////////
-pg_query("delete  from proveedores where id_proveedor='$_POST[id_proveedor]'");
+/////////////////eliminar proveedores////////////////////
+pg_query("Update proveedores Set estado='Pasivo' where id_proveedor='$_POST[id_proveedor]'");
 //////////////////////////////////////////////////////
 
 $data = 1;
