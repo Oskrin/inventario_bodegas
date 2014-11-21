@@ -11,7 +11,7 @@ while ($row = pg_fetch_row($consulta)) {
         'id_cliente' => $row[0],
         'ruc_ci' => $row[2],
         'direccion_cliente' => $row[5],
-        'telefono_cliente' => $row[6],
+        'telefono_cliente' => $row[7],
         'correo' => $row[10]
     );
 }

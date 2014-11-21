@@ -298,6 +298,7 @@ function menu_2() {
                     <li><a href="../html/index.php">Salir</a></li>
                 </ul>
             </li>
+            
             <li><a href="" target="_parent"><i class="icon-warning-sign"></i> Ayuda</a>
                 <ul class="mega-menu">
                     <li>

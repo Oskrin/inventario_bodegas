@@ -114,8 +114,6 @@ function entrar2() {
                             $("#precio").focus();
                             alertify.alert("Ingrese un precio");
                         } else {
-                            // $("#descuento").focus();
-                            //alert("ok");
                             var filas = jQuery("#list").jqGrid("getRowData");
                             var su = 0;
                             var dife = 0;

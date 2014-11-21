@@ -259,7 +259,7 @@ function modificar_producto(){
                                                         if(res == 1){
                                                             alertify.alert("Datos Modificados Correctamente",function(){
                                                                 location.reload();
-                                                          });
+                                                            });
                                                         } else{
                                                             alertify.alert("Error..... Datos no Modificados");
                                                         }
@@ -404,18 +404,14 @@ function agregar_marca() {
 
 function Valida_punto() {
     var key;
-    if (window.event)
-    {
+    if (window.event) {
         key = event.keyCode;
-    } else if (event.which)
-{
+    } else if (event.which) {
         key = event.which;
     }
 
-    if (key < 48 || key > 57)
-    {
-        if (key === 46 || key === 8)
-        {
+    if (key < 48 || key > 57) {
+        if (key === 46 || key === 8) {
             return true;
         } else {
             return false;
@@ -460,25 +456,21 @@ function inicio() {
     }
     //////////////////////////
     
-    
     /////////////////verificar repetidos/////////////
-    /////valida si ya existe/////
-    $("#cod_prod").blur(function() {
-        if ($("#cod_prod").val().length > 0) {
-            $.ajax({
-                type: "POST",
-                url: "../procesos/comparar_codigo.php",
-                data: "codigo=" + $("#cod_prod").val(),
-                success: function(data) {
-                    var val = data;
-                    if (val == 1) {
-                        $("#cod_prod").val("");
-                        $("#cod_prod").focus();
-                        alertify.alert("Error... El código ya existe");
-                    }
+    $("#cod_prod").keyup(function() {
+        $.ajax({
+            type: "POST",
+            url: "../procesos/comparar_codigo.php",
+            data: "codigo=" + $("#cod_prod").val(),
+            success: function(data) {
+                var val = data;
+                if (val == 1) {
+                    $("#cod_prod").val("");
+                    $("#cod_prod").focus();
+                    alertify.alert("Error... El código ya existe");
                 }
-            });
-        }
+            }
+        });
     });
     /////////////////////////////////////////////////
 
@@ -548,21 +540,6 @@ function inicio() {
     $("#seguro").dialog(dialogo4);
     ///////////////////////////////////////////////
     
-    //////////////imput spinner////////////////
-    $("#stock").spinner({
-        min: 1
-    });
-    $("#minimo").spinner({
-        min: 1
-    });
-    $("#maximo").spinner({
-        min: 1
-    });
-    $("#descuento").spinner({
-        min: 1
-    });
-    /////////////////////////////////
-    
     /////////calendarios///////
     $("#fecha_creacion").datepicker({
         dateFormat: 'yy-mm-dd'
@@ -616,7 +593,7 @@ function inicio() {
             {name: 'cod_barras', index: 'cod_barras', editable: true, align: 'center', width: '120', search: true, frozen: true, formoptions: {elmsuffix: " (*)"}, editrules: {required: true}},
             {name: 'nombre_art', index: 'nombre_art', editable: true, align: 'center', width: '180', search: true, frozen: true, editoptions: {readonly: 'readonly'}, formoptions: {elmprefix: ""}},
             {name: 'iva', index: 'iva', editable: true, align: 'center', width: '50', search: false, frozen: true, editoptions: {readonly: 'readonly'}, formoptions: {elmprefix: ""}},
-            {name: 'series', index: 'series', editable: true, align: 'center', width: '50', search: false, frozen: true, editoptions: {readonly: 'readonly'}, formoptions: {elmprefix: ""}},
+            {name: 'series', index: 'series', editable: true, align: 'center', width: '50', hidden: true, search: false, frozen: true, editoptions: {readonly: 'readonly'}, formoptions: {elmprefix: ""}},
             {name: 'precio_compra', index: 'precio_compra', editable: true, align: 'center', width: '120', search: false, frozen: true, editoptions: {readonly: 'readonly'}, formoptions: {elmprefix: ""}},
             {name: 'utilidad_minorista', index: 'utilidad_minorista', editable: true, align: 'center', width: '120', search: false, frozen: true, editoptions: {readonly: 'readonly'}, formoptions: {elmprefix: ""}},
             {name: 'precio_minorista', index: 'precio_minorista', editable: true, align: 'center', width: '120', search: false, frozen: true, editoptions: {readonly: 'readonly'}, formoptions: {elmprefix: ""}},
@@ -631,8 +608,8 @@ function inicio() {
             {name: 'fecha_creacion', index: 'fecha_creacion', editable: true, align: 'center', width: '120', search: false, frozen: true, editoptions: {readonly: 'readonly'}, formoptions: {elmprefix: ""}},
             {name: 'modelo', index: 'modelo', editable: true, align: 'center', width: '120', search: false, frozen: true, editoptions: {readonly: 'readonly'}, formoptions: {elmprefix: ""}},
             {name: 'aplicacion', index: 'aplicacion', editable: true, align: 'center', width: '120', search: false, frozen: true, editoptions: {readonly: 'readonly'}, formoptions: {elmprefix: ""}},
-            {name: 'vendible', index: 'vendible', editable: true, align: 'center', width: '120', search: false, frozen: true, editoptions: {readonly: 'readonly'}, formoptions: {elmprefix: ""}},
-            {name: 'inventario', index: 'inventario', editable: true, align: 'center', width: '120', search: false, frozen: true, editoptions: {readonly: 'readonly'}, formoptions: {elmprefix: ""}},
+            {name: 'vendible', index: 'vendible', editable: true, align: 'center', width: '120', hidden: true, search: false, frozen: true, editoptions: {readonly: 'readonly'}, formoptions: {elmprefix: ""}},
+            {name: 'inventario', index: 'inventario', editable: true, align: 'center',hidden: true , width: '120', search: false, frozen: true, editoptions: {readonly: 'readonly'}, formoptions: {elmprefix: ""}},
             {name: 'imagen', index: 'imagen', editable: true, align: 'center', width: '120', search: false, frozen: true, editoptions: {readonly: 'readonly'}, formoptions: {elmprefix: ""}}
         ],
         rowNum: 10,
