@@ -37,16 +37,10 @@ function limpiar_asignacion(){
 }
 
 function a_entero(valor){  
-   //intento convertir a entero.  
-   //si era un entero no le afecta, si no lo era lo intenta convertir  
    valor = parseInt(valor);  
-  
-    //comprobamos si es un valor entero  
     if (isNaN(valor)) {  
-          //no es entero 0  
           return 0;  
     }else{  
-          //es un valor entero  
           return valor;  
     }  
 }
@@ -151,15 +145,21 @@ function inicio() {
     };
     ////////////////////////////// 
      
-         $("#search_codigo").keyup(function() {
-      $("#list").jqGrid('setGridParam', {url: '../xml/search.php?valor=' + $("#search_codigo").val(), datatype: 'xml'}).trigger('reloadGrid');
+    $("#search_codigo").keyup(function() {
+      $("#list").jqGrid('setGridParam', {url: '../xml/search.php?valor=' + $("#search_codigo").val() + '&categoria=' + $("#categoria").val(), datatype: 'xml'}).trigger('reloadGrid');
     });
     
      $("#search_producto").keyup(function() {
-      $("#list").jqGrid('setGridParam', {url: '../xml/search2.php?valor=' + $("#search_producto").val(), datatype: 'xml'}).trigger('reloadGrid');
+      $("#list").jqGrid('setGridParam', {url: '../xml/search2.php?valor=' + $("#search_producto").val() + '&categoria=' + $("#categoria").val(), datatype: 'xml'}).trigger('reloadGrid');
     });
-     
-     
+    
+    //////////cambio categorias//////////////
+    
+    $("#categoria").change(function(){
+       $("#list").jqGrid('setGridParam', {url: '../xml/datos_productos3.php?categoria=' + $("#categoria").val(), datatype: 'xml'}).trigger('reloadGrid');
+    });
+    
+    ////////////////////////////////////////
      
       $(window).bind('resize', function() {
     jQuery("#list").setGridWidth($('#centro').width() - 10);
@@ -176,8 +176,8 @@ function inicio() {
             {name: 'precio_compra', index: 'precio_compra', editable: true, hidden: true, align: 'center', width: '140', search: true, frozen: true, formoptions: {elmsuffix: " (*)"}, editrules: {required: true}},
             {name: 'stock', index: 'stock', editable: true, align: 'center', width: '140', search: false},
         ],
-        rowNum: 10,
-        rowList: [10, 20, 30],
+        rowNum: 300,
+        rowList: [300, 600, 900],
         height: 230,
         pager: jQuery('#pager'),
         editurl: "../procesos/procesosUsuarios.php",
@@ -263,9 +263,10 @@ function inicio() {
    		{name:'cantidad',index:'cantidad', width:100, resizable:true,sortable:true,editable:true, align: 'center', editoptions:{ size:15,dataInit: function(elem){$(elem).bind("keypress", function(e) {return numeros(e)})}}}, 
                 {name:'disponibles', index: 'disponibles', editable: false, search: false, hidden: false, editrules: {edithidden: false}, align: 'center',frozen: true, width: 100},
    	],
-   	rowNum:5,
-   	rowList:[5,10,20],
+   	rowNum:500,
+   	rowList:[500,100,150],
    	pager: '#pager2',
+        height: 300,
    	sortname: 'cod_productos',
         viewrecords: true,
         sortorder: "asc",

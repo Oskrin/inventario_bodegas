@@ -24,23 +24,44 @@ $start = $limit * $page - $limit;
 if ($start < 0)
     $start = 0;
 
-    $SQL = "select * from productos where cod_barras like '%$_GET[valor]%' ORDER BY $sidx $sord offset $start limit $limit";
+if ($_GET['categoria'] == "") {
+    $SQL = "select * from productos where codigo like '%$_GET[valor]%' and estado = 'Activo' ORDER BY $sidx $sord offset $start limit $limit";
 
-$result = pg_query($SQL);
-header("Content-type: text/xml;charset=utf-8");
-$s = "<?xml version='1.0' encoding='utf-8'?>";
-$s .= "<rows>";
-$s .= "<page>" . $page . "</page>";
-$s .= "<total>" . $total_pages . "</total>";
-$s .= "<records>" . $count . "</records>";
-while ($row = pg_fetch_array($result)) {
-    $s .= "<row id='" . $row[0] . "'>";
-    $s .= "<cell>" . $row[0] . "</cell>";
-    $s .= "<cell>" . $row[1] . "</cell>";
-    $s .= "<cell>" . $row[3] . "</cell>";
-    $s .= "<cell>" . $row[6] . "</cell>";
-    $s .= "<cell>" . $row[13] . "</cell>";
-    $s .= "</row>";
+    $result = pg_query($SQL);
+    header("Content-type: text/xml;charset=utf-8");
+    $s = "<?xml version='1.0' encoding='utf-8'?>";
+    $s .= "<rows>";
+    $s .= "<page>" . $page . "</page>";
+    $s .= "<total>" . $total_pages . "</total>";
+    $s .= "<records>" . $count . "</records>";
+    while ($row = pg_fetch_array($result)) {
+        $s .= "<row id='" . $row[0] . "'>";
+        $s .= "<cell>" . $row[0] . "</cell>";
+        $s .= "<cell>" . $row[1] . "</cell>";
+        $s .= "<cell>" . $row[3] . "</cell>";
+        $s .= "<cell>" . $row[6] . "</cell>";
+        $s .= "<cell>" . $row[13] . "</cell>";
+        $s .= "</row>";
+    }
+} else {
+    $SQL = "select * from productos where categoria = '$_GET[categoria]' and codigo like '%$_GET[valor]%' and estado = 'Activo'  ORDER BY $sidx $sord offset $start limit $limit";
+
+    $result = pg_query($SQL);
+    header("Content-type: text/xml;charset=utf-8");
+    $s = "<?xml version='1.0' encoding='utf-8'?>";
+    $s .= "<rows>";
+    $s .= "<page>" . $page . "</page>";
+    $s .= "<total>" . $total_pages . "</total>";
+    $s .= "<records>" . $count . "</records>";
+    while ($row = pg_fetch_array($result)) {
+        $s .= "<row id='" . $row[0] . "'>";
+        $s .= "<cell>" . $row[0] . "</cell>";
+        $s .= "<cell>" . $row[1] . "</cell>";
+        $s .= "<cell>" . $row[3] . "</cell>";
+        $s .= "<cell>" . $row[6] . "</cell>";
+        $s .= "<cell>" . $row[13] . "</cell>";
+        $s .= "</row>";
+    }
 }
 $s .= "</rows>";
 echo $s;

@@ -156,9 +156,19 @@ $cont1++;
                                                         <fieldset>
                                                             <table>
                                                                 <tr>
-                                                                    <td><label>Código</label></td>
+                                                                    <td><label>Categoria:</label></td>
+                                                                    <td><select id="categoria" name="categoria" class="campo" style="width: 165px">
+                                                                            <option value="">........Todo........</option>
+                                                                            <?php
+                                                                            $consulta = pg_query("select * from categoria ");
+                                                                            while ($row = pg_fetch_row($consulta)) {
+                                                                                echo "<option id=$row[0] value=$row[1]>$row[1]</option>";
+                                                                            }
+                                                                            ?>
+                                                                        </select></td>
+                                                                    <td><label style="margin-left: 15px">Código:</label></td>
                                                                     <td><input type="text" id="search_codigo" name="search_codigo" placeholder="Buscar..." class="campo"/></td>
-                                                                    <td><label style="margin-left: 15px">Producto</label></td>
+                                                                    <td><label style="margin-left: 15px">Producto:</label></td>
                                                                     <td><input type="text" id="search_producto" name="search_producto" class="campo" placeholder="Buscar..." style="width: 300px"/></td>
                                                                 </tr>
                                                             </table>
@@ -178,7 +188,7 @@ $cont1++;
                                                             <div class="widget-content">
                                                                 <div class="tabbable" id="centro2">
                                                                     <table id="list2"></table>
-                                                                    <div id="pager2"></div>   
+
                                                                 </div>  
                                                             </div>
                                                         </fieldset>

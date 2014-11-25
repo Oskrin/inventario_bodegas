@@ -1078,6 +1078,7 @@ function guardar_factura() {
                                                 $("#meses").focus();
                                                 alertify.alert("Meses a diferir");
                                             } else {
+                                                
                                                 var v1 = new Array();
                                                 var v2 = new Array();
                                                 var v3 = new Array();
@@ -1090,6 +1091,7 @@ function guardar_factura() {
                                                 var string_v4 = "";
                                                 var string_v5 = "";
                                                 var string_v6 = "";
+                                                
                                                 var fil = jQuery("#list").jqGrid("getRowData");
                                                 for (var i = 0; i < fil.length; i++) {
                                                     var datos = fil[i];
@@ -2107,7 +2109,7 @@ function inicio() {
             {name: 'iva', index: 'iva', align: 'center', width: 100, hidden: true},
             {name: 'pendiente', index: 'pendiente', editable: false, frozen: true, editrules: {required: true}, align: 'center', width: 90}
         ],
-        rowNum: 30,
+        rowNum: 10,
         width: 780,
         sortable: true,
         rowList: [10, 20, 30],
@@ -2330,7 +2332,7 @@ function inicio() {
             {name: 'total_venta', index: 'total_venta', editable: true, search: false, hidden: false, editrules: {edithidden: false}, align: 'center',frozen: true, width: 100},
             {name: 'fecha_actual', index: 'fecha_actual', editable: true, search: false, hidden: false, editrules: {edithidden: false}, align: 'center',frozen: true, width: 100},
         ],
-        rowNum: 30,
+        rowNum: 10,
         width: 750,
         height:220,
         sortable: true,

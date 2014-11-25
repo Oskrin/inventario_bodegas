@@ -151,9 +151,9 @@ $cont1++;
                                                         <table cellpadding="2" border="0" style="margin-left: 10px">
                                                             <tr>
                                                                 <td><label style="width: 100%">Cédula Identidad/RUC: <font color="red">*</font></label></td>  
-                                                                <td><input type="text" name="ruc_ci"  id="ruc_ci" placeholder="Buscar....." class="campo" style="width: 150px"/></td>
+                                                                <td><input type="text" name="ruc_ci"  id="ruc_ci" class="campo" style="width: 150px"/></td>
                                                                 <td><label style="width: 100%; margin-left: 10px">Nombres Completos del Cliente: <font color="red">*</font></label></td>
-                                                                <td><input type="text" name="nombre_cliente" id="nombre_cliente" class="campo" style="width: 250px"/></td>
+                                                                <td><input type="text" name="nombre_cliente" id="nombre_cliente" class="campo" style="width: 250px" /></td>
                                                             </tr>  
                                                         </table>
 
