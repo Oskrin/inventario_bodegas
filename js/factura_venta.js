@@ -159,7 +159,7 @@ function entrar() {
             } else {
                 if ($("#cantidad").val() === "") {
                     $("#cantidad").focus();
-                    alertify.alert("Ingrese una cantidad");
+//                    alertify.alert("Ingrese una cantidad");
                 } else {
                     $("#p_venta").focus();
                 }
@@ -183,7 +183,7 @@ function entrar2() {
             } else {
                 if ($("#cantidad").val() === "") {
                     $("#cantidad").focus();
-                    alertify.alert("Ingrese una cantidad");
+//                    alertify.alert("Ingrese una cantidad");
                 } else {
                     if ($("#p_venta").val() === "") {
                         $("#p_venta").focus();
@@ -356,7 +356,7 @@ function entrar3() {
                                     var dd = fil[t];
                                     if (dd['iva'] === "Si") {
                                         subtotal = (subtotal + parseFloat(dd['total']));
-                                        iva = parseFloat((subtotal * 0.12)).toFixed(2);
+                                        iva = parseFloat((subtotal / 1.12)).toFixed(2);
                                         var sub = (parseFloat(subtotal) - parseFloat(iva)).toFixed(2);
                                         mu = (dd['cantidad'] * dd['precio_u']).toFixed(2);
                                         des = ((mu * dd['descuento'])/100).toFixed(2);
@@ -365,8 +365,8 @@ function entrar3() {
                                         $("#iva_producto").val("");
                                     }
                                 }
-                                $("#total_p2").val(sub);
-                                $("#iva").val(iva);
+                                $("#total_p2").val(iva);
+                                $("#iva").val(sub);
                                 $("#desc").val(descu);
                                 $("#tot").val(t_fc);
                             } else {
@@ -2155,15 +2155,16 @@ function inicio() {
                      
                     if (ret.iva === "Si") {
                         iva = $("#iva").val();
-                        total_iva = parseFloat(ret.total * 0.12).toFixed(2);
-                        iva = ($("#iva").val() - total_iva).toFixed(2);
+                        total_iva = parseFloat(ret.total  / 1.12).toFixed(2);
                         totalrifa12 = (ret.total - total_iva).toFixed(2);
-                        tarifa12 = (parseFloat($("#total_p2").val()) - totalrifa12).toFixed(2);
+                        tarifa12 = (parseFloat($("#total_p2").val()) - total_iva).toFixed(2);
+                        iva = ($("#iva").val() - totalrifa12 ).toFixed(2); 
                         mul = (ret.cantidad * ret.precio_u).toFixed(2);
                         des = ((mul * ret.descuento)/100).toFixed(2);
                         total_des = (parseFloat($("#desc").val()) - des).toFixed(2);
                         total = (parseFloat(totalrifa12) + parseFloat(total_iva)).toFixed(2);
                         total_to = (parseFloat($("#tot").val()) - total).toFixed(2);
+                        
                         $("#total_p2").val(tarifa12);
                         $("#iva").val(iva);
                         $("#desc").val(total_des);

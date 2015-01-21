@@ -21,7 +21,6 @@ error_reporting(0);
         <link rel="stylesheet" type="text/css" href="../css/ui.jqgrid.css"/> 
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/bootstrap-responsive.min.css" rel="stylesheet">
-        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet">
         <link href="../css/font-awesome.css" rel="stylesheet">
         <link href="../css/style.css" rel="stylesheet">
         <link href="../css/link_top.css" rel="stylesheet" />
@@ -52,13 +51,6 @@ error_reporting(0);
         <div class="navbar navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container">
-
-                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </a>
-
                     <a class="brand" href="">
                         <h1><?php echo $_SESSION['empresa']; ?></h1>				
                     </a>
@@ -113,14 +105,14 @@ error_reporting(0);
                                                                         <input type="text" name="ci_usuario" id="ci_usuario" class="campo" readonly />
                                                                     </div>
                                                                 </div>
-                                                                
+
                                                                 <div class="control-group">											
                                                                     <label class="control-label" for="nombre_usuario">Nombres Usuario:</label>
                                                                     <div class="controls">
                                                                         <input type="text" name="nombre_usuario" id="nombre_usuario" class="campo"  readonly/>
                                                                     </div>
                                                                 </div>
-                                                                
+
                                                                 <div class="control-group">											
                                                                     <label class="control-label" for="apellido_usuario">Apellidos Usuario:</label>
                                                                     <div class="controls">

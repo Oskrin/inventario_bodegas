@@ -18,7 +18,6 @@ include '../menus/menu.php';
         <link rel="stylesheet" type="text/css" href="../css/ui.jqgrid.css"/> 
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/bootstrap-responsive.min.css" rel="stylesheet">
-        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet">
         <link href="../css/font-awesome.css" rel="stylesheet">
         <link href="../css/style.css" rel="stylesheet">
         <link href="../css/link_top.css" rel="stylesheet" />
@@ -100,7 +99,7 @@ include '../menus/menu.php';
                                                     <div class="control-group">
                                                         <label class="control-label" for="tipo_docu">Tipo Documento: <font color="red">*</font></label>
                                                         <div class="controls" >
-                                                            <select name="tipo_docu" id="tipo_docu" required class="campo">
+                                                            <select name="tipo_docu" id="tipo_docu" required style="width: 200px">
                                                                 <option value="">......Seleccione......</option>
                                                                 <option value="Cedula">Cedula</option>
                                                                 <option value="Ruc">Ruc</option>
@@ -143,14 +142,14 @@ include '../menus/menu.php';
                                                     <div class="control-group">
                                                         <label class="control-label" for="pais_pro">País: <font color="red">*</font></label>
                                                         <div class="controls">
-                                                            <input type="text" name="pais_pro" id="pais_pro" required  class="campo"/>
+                                                            <input type="text" name="pais_pro" id="pais_pro" placeholder="Ingrese un país" required  class="campo"/>
                                                         </div>  
                                                     </div> 
 
                                                     <div class="control-group">
                                                         <label class="control-label" for="forma_pago">Formas de Pago: <font color="red">*</font></label>
                                                         <div class="controls" >
-                                                            <select name="forma_pago" id="forma_pago" required class="campo">
+                                                            <select name="forma_pago" id="forma_pago" required style="width: 200px">
                                                                 <option value="">......Seleccione......</option>
                                                                 <option value="Contado">Contado</option>
                                                                 <option value="Credito">Credito</option>
@@ -173,7 +172,6 @@ include '../menus/menu.php';
                                                             <input type="text" name="ruc_ci"  id="ruc_ci" placeholder="10000000000" required class="campo" />
                                                             <input type="hidden" name="id_proveedor"  id="id_proveedor" readonly class="campo" >
                                                         </div>	
-                                                        <!--<div id="mensaje1" class="errores">Dame tu nombre</div>-->
                                                     </div>
 
                                                     <div class="control-group">											
@@ -207,14 +205,14 @@ include '../menus/menu.php';
                                                     <div class="control-group">											
                                                         <label class="control-label" for="ciudad_pro">Ciudad: <font color="red">*</font> </label>
                                                         <div class="controls">
-                                                            <input type="text" name="ciudad_pro" id="ciudad_pro" required class="campo"/>
+                                                            <input type="text" name="ciudad_pro" id="ciudad_pro" placeholder="Ingrese una ciudad" required class="campo"/>
                                                         </div>
                                                     </div>
 
                                                     <div class="control-group">											
                                                         <label class="control-label" for="principal_pro">Proveedor Principal: <font color="red">*</font></label>
                                                         <div class="controls">
-                                                            <select name="principal_pro" id="principal_pro" required class="campo" >
+                                                            <select name="principal_pro" id="principal_pro" required style="width: 200px" >
                                                                 <option value="">......Seleccione......</option>
                                                                 <option value="Si">Si</option>
                                                                 <option value="No">No</option>

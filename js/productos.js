@@ -295,7 +295,6 @@ function modificar_producto(){
     }     
 }
 
-
 function eliminar_productos() {
     if ($("#cod_productos").val() === "") {
         alertify.alert("Seleccione un producto");
@@ -467,7 +466,7 @@ function inicio() {
                 if (val == 1) {
                     $("#cod_prod").val("");
                     $("#cod_prod").focus();
-                    alertify.alert("Error... El código ya existe");
+                    alertify.error("Error... El código ya existe");
                 }
             }
         });
