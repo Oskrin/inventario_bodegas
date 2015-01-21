@@ -14,6 +14,10 @@ session_destroy();
         <link href="../css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" type="text/css" href="../css/jquery-ui-1.10.4.custom.css"/> 
         <link href="../css/font-awesome.css" rel="stylesheet">
+<<<<<<< HEAD
+=======
+        
+>>>>>>> origin/master
         <link href="../css/style.css" rel="stylesheet" type="text/css">
         <link href="../css/pages/signin.css" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="../css/alertify.core.css" />
